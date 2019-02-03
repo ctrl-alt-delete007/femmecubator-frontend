@@ -1,14 +1,19 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { createUser } from "../thunks/accountThunks";
 
 class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: ""
     };
+
+    this.changeHandler = this.changeHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
   }
   render() {
     return (
@@ -16,21 +21,21 @@ class Registration extends Component {
         <form onSubmit={this.submitHandler}>
           <ul>
             <li className="registrationInputs">
-              <label htmlFor="firstName">First name: </label>
+              <label htmlFor="first_name">First name: </label>
               <input
                 type="text"
-                name="firstName"
+                name="first_name"
                 onChange={this.changeHandler}
-                value={this.state.firstName}
+                value={this.state.first_name}
               />
             </li>
             <li className="registrationInputs">
-              <label htmlFor="lastName">Last name: </label>
+              <label htmlFor="last_name">Last name: </label>
               <input
                 type="text"
-                name="lastName"
+                name="last_name"
                 onChange={this.changeHandler}
-                value={this.state.lastName}
+                value={this.state.last_name}
               />
             </li>
             <li className="registrationInputs">
@@ -48,7 +53,7 @@ class Registration extends Component {
                 type="password"
                 name="password"
                 onChange={this.changeHandler}
-                value={this.state.firstName}
+                value={this.state.password}
               />
             </li>
             <input type="submit" value="submit" />
@@ -66,8 +71,17 @@ class Registration extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    console.log("submit");
+    this.props.createUser(this.state);
+    this.setState({ first_name: "", last_name: "", email: "", password: "" });
+    e.target.reset();
+    // !! ROUTE to main page
   }
 }
 
-export default Registration;
+const mapDispatchToProps = dispatch => {
+  return { createUser: userInfo => dispatch(createUser(userInfo)) };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Registration);
