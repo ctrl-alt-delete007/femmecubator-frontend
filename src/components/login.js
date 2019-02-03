@@ -1,50 +1,32 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { createUser } from "../thunks/accountThunks";
+import { authenticateUser } from "../thunks/accountThunks";
 
-class Registration extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      first_name: "",
-      last_name: "",
       email: "",
       password: ""
     };
-
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
+
   render() {
     return (
       <Fragment>
         <form onSubmit={this.submitHandler}>
           <ul>
             <li className="accountForms">
-              <label htmlFor="first_name">First name: </label>
-              <input
-                type="text"
-                name="first_name"
-                onChange={this.changeHandler}
-                value={this.state.first_name}
-              />
-            </li>
-            <li className="accountForms">
-              <label htmlFor="last_name">Last name: </label>
-              <input
-                type="text"
-                name="last_name"
-                onChange={this.changeHandler}
-                value={this.state.last_name}
-              />
-            </li>
-            <li className="accountForms">
               <label htmlFor="email">E-mail: </label>
               <input
                 type="email"
                 name="email"
-                onChange={this.changeHandler}
+                id="email"
                 value={this.state.email}
+                onChange={this.changeHandler}
               />
             </li>
             <li className="accountForms">
@@ -52,11 +34,14 @@ class Registration extends Component {
               <input
                 type="password"
                 name="password"
-                onChange={this.changeHandler}
+                id="password"
                 value={this.state.password}
+                onChange={this.changeHandler}
               />
             </li>
-            <input type="submit" value="submit" />
+            <li className="accountForms">
+              <input type="submit" value="submit" />
+            </li>
           </ul>
         </form>
       </Fragment>
@@ -71,17 +56,21 @@ class Registration extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.createUser(this.state);
-    this.setState({ first_name: "", last_name: "", email: "", password: "" });
-    e.target.reset();
-    // !! ROUTE to main page
+    this.props.authenticateUser(this.state);
+    this.setState({
+      email: "",
+      password: ""
+    });
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return { createUser: userInfo => dispatch(createUser(userInfo)) };
+  return {
+    authenticateUser: loginInfo => dispatch(authenticateUser(loginInfo))
+  };
 };
+
 export default connect(
   null,
   mapDispatchToProps
-)(Registration);
+)(Login);
