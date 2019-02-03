@@ -5,7 +5,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_USER": {
-      console.log(action.payload);
       return { ...state, currentUser: action.payload };
     }
     case "REGISTER_USER": {
