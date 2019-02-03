@@ -12,8 +12,8 @@ import * as serviceWorker from "./serviceWorker";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  coupon: couponReducer,
-  event: eventReducer
+  couponsInfo: couponReducer,
+  eventsInfo: eventReducer
 });
 
 const store = createStore(
