@@ -10,6 +10,11 @@ const reducer = (state = initialState, action) => {
     case "REGISTER_USER": {
       return { ...state, currentUser: action.payload };
     }
+
+    case "GET_CURRENT_USER_INFO": {
+      return { ...state, currentUser: action.payload };
+    }
+
     default:
       return state;
   }

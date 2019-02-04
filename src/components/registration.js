@@ -81,6 +81,7 @@ class Registration extends Component {
 const mapDispatchToProps = dispatch => {
   return { createUser: userInfo => dispatch(createUser(userInfo)) };
 };
+
 export default connect(
   null,
   mapDispatchToProps
