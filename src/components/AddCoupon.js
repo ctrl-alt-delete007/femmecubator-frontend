@@ -6,13 +6,10 @@ class AddCoupon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      couponInfo: {
-        coupon_code: "",
-        sponsor: "",
-        description: "",
-        expiration: ""
-      },
-      memberInfo: {}
+      coupon_code: "",
+      sponsor: "",
+      description: "",
+      expiration: ""
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -21,19 +18,12 @@ class AddCoupon extends Component {
 
   componentDidMount() {
     this.props.getCurrentUser();
-    console.log("did mount", this.props.currentUser);
-    // this.setState({ memberInfo: this.props.currentUser });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("did update", prevProps);
   }
 
   render() {
-    console.log(this.state);
     return (
       <Fragment>
-        <form action="">
+        <form onSubmit={this.submitHandler}>
           <ul>
             <li className="accountForms">
               <label htmlFor="coupon_code">Coupon Code: </label>
@@ -92,7 +82,11 @@ class AddCoupon extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.createCoupon(this.state);
+    const couponInfo = {
+      ...this.state,
+      member_id: this.props.currentUser.membershipInfo.id
+    };
+    this.props.createCoupon(couponInfo);
     this.setState({
       coupon_code: "",
       sponsor: "",
@@ -111,7 +105,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  return { currentUser: state.accountInfo.currentUser.membershipInfo };
+  return { currentUser: state.accountInfo.currentUser };
 };
 
 export default connect(

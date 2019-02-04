@@ -1,4 +1,4 @@
-import { addCoupon } from "../actions/couponActions";
+import { addCoupon, loadCoupons } from "../actions/couponActions";
 
 export const createCoupon = couponInfo => dispatch => {
   return fetch("http://localhost:3000/api/v1/coupons", {
@@ -12,4 +12,16 @@ export const createCoupon = couponInfo => dispatch => {
   })
     .then(res => res.json())
     .then(coupon => dispatch(addCoupon(coupon)));
+};
+
+export const getCoupons = () => dispatch => {
+  return fetch("http://localhost:3000/api/v1/coupons", {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.getItem("token")
+    }
+  })
+    .then(res => res.json())
+    .then(coupons => dispatch(loadCoupons(coupons)));
 };
