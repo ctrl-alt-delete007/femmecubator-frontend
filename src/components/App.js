@@ -32,6 +32,14 @@ class App extends Component {
                   tech through the Femmecubator community. Sign up Today.
                 </p>
               </span>
+              <div className="signup-button">
+                <button
+                  className="positive huge ui button"
+                  onClick={this.clickHandler}
+                >
+                  Get Started
+                </button>
+              </div>
             </div>
             <div className="rootPage welcome-banner-text" id="divRight">
               <img
@@ -45,6 +53,10 @@ class App extends Component {
       </Fragment>
     );
   }
+
+  clickHandler = e => {
+    this.props.history.push("/signup");
+  };
 }
 
 export default App;
