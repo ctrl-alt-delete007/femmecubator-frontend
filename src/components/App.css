@@ -44,15 +44,41 @@
   border-color: #2f3aa4;
 }
 
-.rootPage {
+/* .rootPage {
   width: 50%;
   height: 400px;
 }
 
-#divLeft {
-  float: left;
-}
-
 #divRight {
   float: right;
+}
+
+.mainGreeting {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+#rootHeader {
+  padding-left: 150px;
+  padding-right: 150px;
+} */
+
+.ui.header:first-child {
+  margin-top: 100px;
+  margin-left: 75px;
+}
+
+.ui.header + p {
+  margin-left: 75px;
+  margin-right: 75px;
+}
+
+.welcome-banner {
+  display: flex;
+}
+
+.welcome-banner-picture,
+.welcome-banner-text {
+  flex-basis: 50%;
+  border-bottom: 1px solid #848484;
 }

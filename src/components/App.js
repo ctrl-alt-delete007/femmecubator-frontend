@@ -21,11 +21,19 @@ class App extends Component {
         </Switch>
 
         {this.props.location.pathname === "/" ? (
-          <div>
-            <div className="rootPage" id="divLeft">
-              adfad
+          <div className="welcome-banner">
+            <div className="rootPage welcome-banner-picture" id="divLeft">
+              <span className="welcomeText">
+                <h1 className="ui header" id="rootHeader">
+                  Become a Member
+                </h1>
+                <p className="mainGreeting">
+                  From resources to gaining new skills, jumpstart a career in
+                  tech through the Femmecubator community. Sign up Today.
+                </p>
+              </span>
             </div>
-            <div className="rootPage" id="divRight">
+            <div className="rootPage welcome-banner-text" id="divRight">
               <img
                 src={require("../images/mimi-thian-737626-unsplash.jpg")}
                 alt="witi_mainpage_pic"
