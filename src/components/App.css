@@ -34,3 +34,25 @@
 .accountForms {
   list-style: none;
 }
+
+#navbar {
+  background-color: #2f3aa4;
+  margin-bottom: 0px;
+}
+
+#innerNavBar {
+  border-color: #2f3aa4;
+}
+
+.rootPage {
+  width: 50%;
+  height: 400px;
+}
+
+#divLeft {
+  float: left;
+}
+
+#divRight {
+  float: right;
+}

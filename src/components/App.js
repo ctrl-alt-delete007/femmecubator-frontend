@@ -19,6 +19,21 @@ class App extends Component {
           <Route path="/events" component={MeetupEvents} />
           <Route path="/coupons" component={Coupons} />
         </Switch>
+
+        {this.props.location.pathname === "/" ? (
+          <div>
+            <div className="rootPage" id="divLeft">
+              adfad
+            </div>
+            <div className="rootPage" id="divRight">
+              <img
+                src={require("../images/mimi-thian-737626-unsplash.jpg")}
+                alt="witi_mainpage_pic"
+                className="ui fluid image"
+              />
+            </div>
+          </div>
+        ) : null}
       </Fragment>
     );
   }

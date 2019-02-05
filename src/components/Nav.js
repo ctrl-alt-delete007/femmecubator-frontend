@@ -4,9 +4,11 @@ import React, { Component } from "react";
 class NavBar extends Component {
   render() {
     return (
-      <div className="ui inverted segment">
-        <div className="ui inverted secondary pointing right menu">
-          <div class="header item">Femmecubator</div>
+      <div className="ui inverted segment" id="navbar">
+        <div className="ui inverted secondary pointing menu" id="innerNavBar">
+          <div className="header item">
+            <NavLink to="/">Femmecubator</NavLink>
+          </div>
           <div className="right menu">
             <NavLink
               to="/coupons"
@@ -21,6 +23,9 @@ class NavBar extends Component {
               activeClassName="item active"
             >
               Events
+            </NavLink>
+            <NavLink to="/login" className="item" activeClassName="item active">
+              Login
             </NavLink>
           </div>
         </div>
