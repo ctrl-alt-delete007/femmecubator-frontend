@@ -6,17 +6,10 @@ import Login from "./login";
 import Coupons from "./Coupons";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./Nav";
-import { connect } from "react-redux";
-import { getCurrentUser } from "../thunks/accountThunks";
 
 // console.log("api key", process.env.REACT_APP_API_KEY_MEETUP);
 class App extends Component {
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
-
   render() {
-    console.log(this.props.currentUser.isUserLoggedIn);
     return (
       <Fragment>
         <NavBar />
@@ -27,15 +20,10 @@ class App extends Component {
           <Route
             path="/coupons"
             render={() =>
-              this.props.currentUser.isUserLoggedIn ? (
+              typeof localStorage !== "undefined" ? (
                 <Coupons />
               ) : (
-                <Redirect
-                  to={{
-                    pathname: "/login",
-                    state: { from: this.props.location }
-                  }}
-                />
+                <Redirect to="/login" />
               )
             }
           />
@@ -48,13 +36,14 @@ class App extends Component {
                 <h1 className="ui header" id="rootHeader">
                   Become a Member
                 </h1>
-                <p className="mainGreeting">
+                <p className="welcome-greeting">
                   From resources to gaining new skills, jumpstart a career in
                   tech through the Femmecubator community. Sign up Today.
                 </p>
               </span>
               <div className="signup-button">
                 <button
+                  id="signup-btn"
                   className="positive huge ui button"
                   onClick={this.clickHandler}
                 >
@@ -80,15 +69,4 @@ class App extends Component {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return { getCurrentUser: () => dispatch(getCurrentUser()) };
-};
-
-const mapStateToProps = state => {
-  return { currentUser: state.accountInfo };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
