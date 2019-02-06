@@ -1,7 +1,9 @@
+// import { pushState } from "react-router";
 import {
   registerUser,
   loginUser,
-  getCurrentUserInfo
+  getCurrentUserInfo,
+  loginUserFailure
 } from "../actions/accountActions";
 
 export const createUser = userInfo => dispatch => {
@@ -46,11 +48,21 @@ export const getCurrentUser = () => dispatch => {
       Authorization: localStorage.getItem("token")
     }
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 401) throw new Error(res.status);
+      else return res.json();
+    })
     .then(data => {
       const currentUser = {
         membershipInfo: data.membership
       };
       dispatch(getCurrentUserInfo(currentUser));
+    })
+    .catch(error => {
+      // debugger;
+      if (error.message === "401") {
+        dispatch(loginUserFailure());
+        // dispatch(pushState(null, "/login"));
+      }
     });
 };
