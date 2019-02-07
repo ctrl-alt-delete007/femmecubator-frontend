@@ -20,7 +20,7 @@ class App extends Component {
           <Route
             path="/coupons"
             render={() =>
-              typeof localStorage !== "undefined" ? (
+              localStorage.getItem("token") !== null ? (
                 <Coupons />
               ) : (
                 <Redirect to="/login" />

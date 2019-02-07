@@ -16,11 +16,13 @@ class Login extends Component {
 
   render() {
     return (
-      <Fragment>
-        <form onSubmit={this.submitHandler}>
-          <ul>
-            <li className="accountForms">
-              <label htmlFor="email">E-mail: </label>
+      <div className="parent-div-login">
+        <div className="child-div-login">
+          <form class="login-form" onSubmit={this.submitHandler}>
+            <h3 className="">Log In</h3>
+            <p>Please sign in to access our services.</p>
+            <label htmlFor="email">E-mail:</label>
+            <div className="ui input">
               <input
                 type="email"
                 name="email"
@@ -28,9 +30,9 @@ class Login extends Component {
                 value={this.state.email}
                 onChange={this.changeHandler}
               />
-            </li>
-            <li className="accountForms">
-              <label htmlFor="password">Password: </label>
+            </div>
+            <label htmlFor="password">Password:</label>
+            <div className="ui input">
               <input
                 type="password"
                 name="password"
@@ -38,13 +40,18 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.changeHandler}
               />
-            </li>
-            <li className="accountForms">
-              <input type="submit" value="submit" />
-            </li>
-          </ul>
-        </form>
-      </Fragment>
+            </div>
+            <input
+              type="submit"
+              value="submit"
+              className="positive huge ui button"
+              id="login-btn"
+            />
+          </form>
+        </div>
+        <br />
+        <div className="child-div-login">test</div>
+      </div>
     );
   }
 
