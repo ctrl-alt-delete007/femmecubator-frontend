@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { authenticateUser } from "../thunks/accountThunks";
 
@@ -18,7 +18,7 @@ class Login extends Component {
     return (
       <div className="parent-div-login">
         <div className="child-div-login">
-          <form class="login-form" onSubmit={this.submitHandler}>
+          <form className="login-form" onSubmit={this.submitHandler}>
             <h3 className="">Log In</h3>
             <p>Please sign in to access our services.</p>
             <label htmlFor="email">E-mail:</label>
@@ -50,7 +50,10 @@ class Login extends Component {
           </form>
         </div>
         <br />
-        <div className="child-div-login">test</div>
+        <div className="child-div-login">
+          <p>Don't have an account yet?</p>
+          <p>Create an account</p>
+        </div>
       </div>
     );
   }
@@ -68,6 +71,7 @@ class Login extends Component {
       email: "",
       password: ""
     });
+    this.props.history.push("/coupons");
   }
 }
 
