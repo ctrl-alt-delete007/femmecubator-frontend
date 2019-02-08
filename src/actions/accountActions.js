@@ -8,6 +8,8 @@ export const loginUser = userInfo => ({
   payload: userInfo
 });
 
+export const logoutUser = () => ({ type: "LOGOUT_USER" });
+
 export const getCurrentUserInfo = userInfo => ({
   type: "GET_CURRENT_USER_INFO",
   payload: userInfo

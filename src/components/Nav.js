@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/accountActions";
+import { getCurrentUser } from "../thunks/accountThunks";
 
 class NavBar extends Component {
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
   render() {
     return (
       <div className="ui inverted segment" id="navbar">
@@ -24,9 +30,6 @@ class NavBar extends Component {
             >
               Events
             </NavLink>
-            <NavLink to="/login" className="item" activeClassName="item active">
-              Login
-            </NavLink>
           </div>
         </div>
       </div>
@@ -34,4 +37,18 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = state => {
+  return { accountInfo: state.accountInfo };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logoutUser()),
+    getCurrentUser: () => dispatch(getCurrentUser())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar);

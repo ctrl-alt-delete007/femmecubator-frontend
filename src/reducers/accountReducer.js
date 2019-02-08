@@ -17,6 +17,9 @@ const reducer = (state = initialState, action) => {
     case "GET_CURRENT_USER_INFO": {
       return { ...state, isUserLoggedIn: true, currentUser: action.payload };
     }
+    case "LOGOUT_USER": {
+      return { ...state, isUserLoggedIn: false, currentUser: {} };
+    }
     default:
       return state;
   }
