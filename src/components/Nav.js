@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/accountActions";
 import { getCurrentUser } from "../thunks/accountThunks";
+import { withRouter } from "react-router-dom";
 
 class NavBar extends Component {
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
+  // componentDidMount() {
+  //   this.props.getCurrentUser();
+  // }
   render() {
     return (
       <div className="ui inverted segment" id="navbar">
@@ -30,6 +31,9 @@ class NavBar extends Component {
             >
               Events
             </NavLink>
+            <NavLink to="/login" className="item" activeClassName="item active">
+              Login
+            </NavLink>
           </div>
         </div>
       </div>
@@ -48,7 +52,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavBar);
+// export default NavBar;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NavBar)
+);
