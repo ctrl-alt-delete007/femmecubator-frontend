@@ -18,6 +18,7 @@ class App extends Component {
           <Route path="/signup" component={Registration} />
           <Route path="/events" component={MeetupEvents} />
           <Route
+            exact
             path="/coupons"
             render={() =>
               localStorage.getItem("token") !== null ? (

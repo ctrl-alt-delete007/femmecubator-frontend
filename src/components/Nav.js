@@ -6,8 +6,13 @@ import { getCurrentUser } from "../thunks/accountThunks";
 import { withRouter } from "react-router-dom";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logoutHandler = this.logoutHandler.bind(this);
+  }
   componentDidMount() {
-    this.props.getCurrentUser();
+    //this.props.getCurrentUser();
   }
 
   render() {
@@ -32,8 +37,12 @@ class NavBar extends Component {
             >
               Events
             </NavLink>
-            {this.props.accountInfo.isUserLoggedIn ? (
-              <NavLink to="/logout" className="item">
+            {localStorage.getItem("token") !== null ? (
+              <NavLink
+                to="/logout"
+                className="item"
+                isActive={this.logoutHandler}
+              >
                 Logout
               </NavLink>
             ) : (
@@ -49,6 +58,13 @@ class NavBar extends Component {
         </div>
       </div>
     );
+  }
+
+  logoutHandler() {
+    if (this.props.location.pathname === "/logout") {
+      this.props.logout();
+      this.props.history.push("/");
+    }
   }
 }
 

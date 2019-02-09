@@ -18,6 +18,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, isUserLoggedIn: true, currentUser: action.payload };
     }
     case "LOGOUT_USER": {
+      localStorage.clear();
       return { ...state, isUserLoggedIn: false, currentUser: {} };
     }
     default:

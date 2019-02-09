@@ -18,7 +18,7 @@ class Coupons extends Component {
       return (
         <Fragment>
           <AddCoupon />
-          <ul>{coupons}</ul>
+          <div className="ui cards">{coupons}</div>
         </Fragment>
       );
     } else {

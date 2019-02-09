@@ -1,17 +1,19 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 class Coupon extends Component {
   render() {
     const { coupon } = this.props;
     return (
-      <Fragment>
-        <li>
-          <div>{coupon.coupon_code}</div>
-          <div>{coupon.sponsor}</div>
-          <div>{coupon.description}</div>
-          <div>{coupon.expiration}</div>
-        </li>
-      </Fragment>
+      <div className="card">
+        <div className="content">
+          <div className="header">{coupon.sponsor}</div>
+          <div className="description">{coupon.description}</div>
+          <div className="description">{coupon.expiration}</div>
+          <div className="ui bottom attached button">
+            <i className="add icon" />
+          </div>
+        </div>
+      </div>
     );
   }
 }
