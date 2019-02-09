@@ -11,7 +11,8 @@ class Coupons extends Component {
   }
   render() {
     if (localStorage.getItem("token") !== null) {
-      const coupons = this.props.coupons.map((coupon, i) => (
+      console.log(this.props);
+      const coupons = this.props.couponsInfo.coupons.map((coupon, i) => (
         <Coupon key={i} coupon={coupon} />
       ));
 

@@ -10,7 +10,7 @@ class Coupon extends Component {
           <div className="description">{coupon.description}</div>
           <div className="description">{coupon.expiration}</div>
           <div className="ui bottom attached button">
-            <i className="add icon" />
+            <i className="add icon">wishlist</i>
           </div>
         </div>
       </div>
