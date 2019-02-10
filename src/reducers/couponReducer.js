@@ -5,8 +5,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_COUPONS": {
-      debugger;
-      return { coupons: action.payload };
+      return { ...state, coupons: action.payload.coupons };
     }
     case "ADD_COUPON": {
       return { ...state, coupons: [...state.coupons, action.payload] };

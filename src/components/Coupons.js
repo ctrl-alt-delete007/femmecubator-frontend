@@ -6,13 +6,16 @@ import { getCoupons } from "../thunks/couponThunks";
 import Coupon from "./coupon";
 
 class Coupons extends Component {
-  componentDidMount() {
-    if (localStorage.getItem("token") !== null) this.props.getCoupons();
+  constructor(props) {
+    super(props);
+
+    this.props.getCoupons();
   }
+
   render() {
     if (localStorage.getItem("token") !== null) {
-      console.log(this.props);
-      const coupons = this.props.couponsInfo.coupons.map((coupon, i) => (
+      // debugger;
+      const coupons = this.props.coupons.coupons.map((coupon, i) => (
         <Coupon key={i} coupon={coupon} />
       ));
 
@@ -29,7 +32,8 @@ class Coupons extends Component {
 }
 
 const mapStateToProps = state => {
-  return { coupons: state.couponsInfo.coupons };
+  // debugger;
+  return { coupons: state.couponsInfo };
 };
 
 const mapDispatchToProps = dispatch => {
