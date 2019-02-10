@@ -21,6 +21,11 @@ const reducer = (state = initialState, action) => {
       localStorage.clear();
       return { ...state, isUserLoggedIn: false, currentUser: {} };
     }
+    case "CHECK_TOKEN": {
+      if (localStorage.getItem("token") !== null)
+        return { ...state, isUserLoggedIn: true };
+      else return { ...state, isUserLoggedIn: false };
+    }
     default:
       return state;
   }

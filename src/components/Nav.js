@@ -1,15 +1,14 @@
 import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { logoutUser } from "../actions/accountActions";
-import { getCurrentUser } from "../thunks/accountThunks";
+import { logoutUser, isUserLoggedIn } from "../actions/accountActions";
 import { withRouter } from "react-router-dom";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.props.getCurrentUser();
+    this.props.isUserLoggedIn();
 
     this.logoutHandler = this.logoutHandler.bind(this);
   }
@@ -74,7 +73,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logoutUser()),
-    getCurrentUser: () => dispatch(getCurrentUser())
+    isUserLoggedIn: () => dispatch(isUserLoggedIn())
   };
 };
 

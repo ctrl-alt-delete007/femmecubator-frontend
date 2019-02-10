@@ -16,3 +16,5 @@ export const getCurrentUserInfo = userInfo => ({
 });
 
 export const loginUserFailure = () => ({ type: "LOGIN_USER_FAILURE" });
+
+export const isUserLoggedIn = () => ({ type: "CHECK_TOKEN" });
