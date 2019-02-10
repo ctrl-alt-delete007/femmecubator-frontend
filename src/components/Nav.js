@@ -9,10 +9,9 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
 
+    this.props.getCurrentUser();
+
     this.logoutHandler = this.logoutHandler.bind(this);
-  }
-  componentDidMount() {
-    //this.props.getCurrentUser();
   }
 
   render() {
@@ -37,7 +36,7 @@ class NavBar extends Component {
             >
               Events
             </NavLink>
-            {localStorage.getItem("token") !== null ? (
+            {this.props.accountInfo.isUserLoggedIn ? (
               <NavLink
                 to="/logout"
                 className="item"

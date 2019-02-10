@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 import { getMeetups } from "../thunks/eventThunks";
 
 class MeetupEvents extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
     this.props.getMeetups();
   }
+
   render() {
     const meetups = this.props.meetups.map((meetup, i) => (
       <Meetup key={i} meetup={meetup} />

@@ -12,12 +12,10 @@ class AddCoupon extends Component {
       expiration: ""
     };
 
+    this.props.getCurrentUser();
+
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.getCurrentUser();
   }
 
   render() {
