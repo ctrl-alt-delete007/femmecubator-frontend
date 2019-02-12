@@ -156,3 +156,60 @@ body {
   text-align: center;
   color: #3e50b4;
 }
+
+.coupon-contents {
+  background-color: #ffffff;
+}
+
+.Introducing-Access-P {
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: AvenirNext;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+
+#coupon-search {
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 500px;
+}
+
+/* Floating stuff */
+#social {
+  position: fixed;
+  top: 200px;
+  right: 3px;
+  width: 40px;
+  z-index: 1;
+}
+
+a.fbook {
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background: url(../images/baseline-add_circle-24px.svg) no-repeat;
+}
+
+a.fbook {
+  background-position: 0 0;
+  background: url(../images/baseline-add_circle-24px.svg) no-repeat;
+}
+a.fbook:hover {
+  background-position: -40px 0;
+  background: url(../images/baseline-add_circle_outline-24px.svg) no-repeat;
+}
+a.fbook:active {
+  background-position: -80px 0;
+  background: url(../images/baseline-add_circle-24px.svg) no-repeat;
+}
