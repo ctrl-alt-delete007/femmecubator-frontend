@@ -41,29 +41,24 @@ class Coupons extends Component {
       ));
       return (
         <Fragment>
-          <div id="social">
+          {/* <div id="social">
             <a
               className="fbook"
               onClick={this.addCouponHandler}
               title="facebook"
             />
-          </div>
+          </div> */}
+          
           <div className="Introducing-Access-P">
             <span>Introducing Access Pass</span>
             <p>Get access to discounts offered by our partners.</p>
           </div>
+
           <AddCoupon />
           <FilterCoupons filterHandler={this.filterHandler} />
 
-          <div className="ui segment" id="coupon-container">
-            <div className="right ui rail">
-              <div className="ui sticky" style={divStyle}>
-                <h3 className="ui header">Stuck Content</h3>
-              </div>
-            </div>
-            <div className="coupon-contents">
-              <div className="ui cards">{coupons}</div>
-            </div>
+          <div className="coupon-contents">
+            <div className="ui cards">{coupons}</div>
           </div>
         </Fragment>
       );
@@ -80,7 +75,6 @@ class Coupons extends Component {
 }
 
 const mapStateToProps = state => {
-  // debugger;
   return { coupons: state.couponsInfo };
 };
 
