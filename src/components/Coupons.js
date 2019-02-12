@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import AddCoupon from "./AddCoupon";
 import { getCoupons } from "../thunks/couponThunks";
+import { getCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
 import FilterCoupons from "./FilterCoupons";
 
@@ -21,12 +22,14 @@ class Coupons extends Component {
     };
 
     this.props.getCoupons();
+    this.props.getCurrentUser();
 
     this.filterHandler = this.filterHandler.bind(this);
     this.addCouponHandler = this.addCouponHandler.bind(this);
   }
 
   render() {
+    console.log();
     if (localStorage.getItem("token") !== null) {
       let filteredCoupons = [];
       if (this.state.q === "") {
@@ -36,9 +39,15 @@ class Coupons extends Component {
           coupon.description.toLowerCase().includes(this.state.q.toLowerCase())
         );
       }
+
       const coupons = filteredCoupons.map((coupon, i) => (
-        <Coupon key={i} coupon={coupon} />
+        <Coupon
+          key={i}
+          coupon={coupon}
+          user={this.props.user.currentUser.membershipInfo || {}}
+        />
       ));
+
       return (
         <Fragment>
           {/* <div id="social">
@@ -48,7 +57,7 @@ class Coupons extends Component {
               title="facebook"
             />
           </div> */}
-          
+
           <div className="Introducing-Access-P">
             <span>Introducing Access Pass</span>
             <p>Get access to discounts offered by our partners.</p>
@@ -75,11 +84,14 @@ class Coupons extends Component {
 }
 
 const mapStateToProps = state => {
-  return { coupons: state.couponsInfo };
+  return { coupons: state.couponsInfo, user: state.accountInfo };
 };
 
 const mapDispatchToProps = dispatch => {
-  return { getCoupons: () => dispatch(getCoupons()) };
+  return {
+    getCoupons: () => dispatch(getCoupons()),
+    getCurrentUser: () => dispatch(getCurrentUser())
+  };
 };
 
 export default connect(

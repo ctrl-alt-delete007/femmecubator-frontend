@@ -9,6 +9,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import couponReducer from "./reducers/couponReducer";
 import eventReducer from "./reducers/eventReducer";
 import accountReducer from "./reducers/accountReducer";
+import wishlistReducer from "./reducers/wishlistReducer";
 import * as serviceWorker from "./serviceWorker";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -16,7 +17,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   couponsInfo: couponReducer,
   eventsInfo: eventReducer,
-  accountInfo: accountReducer
+  accountInfo: accountReducer,
+  wishlistInfo: wishlistReducer
 });
 
 const store = createStore(
