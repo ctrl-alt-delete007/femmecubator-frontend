@@ -2,13 +2,16 @@ import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser, isUserLoggedIn } from "../actions/accountActions";
+import { getCurrentUser } from '../thunks/accountThunks'
 import { withRouter } from "react-router-dom";
+import accountImage from '../images/baseline-account_circle-24px.svg'
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
     this.props.isUserLoggedIn();
+    this.props.getCurrentUser();
 
     this.logoutHandler = this.logoutHandler.bind(this);
   }
@@ -41,7 +44,7 @@ class NavBar extends Component {
                 className="item"
                 isActive={this.logoutHandler}
               >
-                Logout
+              
               </NavLink>
             ) : (
               <NavLink
@@ -73,7 +76,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logoutUser()),
-    isUserLoggedIn: () => dispatch(isUserLoggedIn())
+    isUserLoggedIn: () => dispatch(isUserLoggedIn()),
+    getCurrentUser: () => dispatch(getCurrentUser())
   };
 };
 
