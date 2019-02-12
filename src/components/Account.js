@@ -10,8 +10,7 @@ class Account extends Component {
   }
 
   render() {
-    console.log("current user", this.props);
-    return <Fragment>{}</Fragment>;
+    return <Fragment>Do Something</Fragment>;
   }
 }
 

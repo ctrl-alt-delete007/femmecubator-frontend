@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser, isUserLoggedIn } from "../actions/accountActions";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 class NavBar extends Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class NavBar extends Component {
 
     this.props.isUserLoggedIn();
 
-    this.viewAccountHandler = this.viewAccountHandler.bind(this);
     this.logoutHandler = this.logoutHandler.bind(this);
   }
 
@@ -36,24 +35,20 @@ class NavBar extends Component {
             >
               Events
             </NavLink>
-            {this.props.accountInfo.isUserLoggedIn ? (
+            {localStorage.getItem("token") !== null ? (
               <div className="ui simple dropdown item">
                 Account
                 <i className="dropdown icon" />
                 <div className="menu">
+                  <NavLink className="item" to="/account">
+                    View Account
+                  </NavLink>
                   <NavLink
                     className="item"
                     to="/logout"
                     isActive={this.logoutHandler}
                   >
                     Logout
-                  </NavLink>
-                  <NavLink
-                    className="item"
-                    to="/account"
-                    isActive={this.viewAccountHandler}
-                  >
-                    View Account
                   </NavLink>
                 </div>
               </div>
@@ -70,12 +65,6 @@ class NavBar extends Component {
         </div>
       </div>
     );
-  }
-
-  viewAccountHandler(e) {
-    if (this.props.location.pathname === "/account") {
-      console.log("clicked");
-    }
   }
 
   logoutHandler() {

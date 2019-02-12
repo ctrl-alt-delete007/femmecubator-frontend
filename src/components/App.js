@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
 import MeetupEvents from "./meetup_events";
+import Account from "./Account";
 import Registration from "./registration";
 import Login from "./login";
 import Coupons from "./Coupons";
@@ -14,6 +15,7 @@ class App extends Component {
       <Fragment>
         <NavBar />
         <Switch>
+          <Route exact path="/account" component={Account} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
           <Route path="/events" component={MeetupEvents} />
