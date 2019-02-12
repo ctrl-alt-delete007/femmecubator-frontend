@@ -14,9 +14,21 @@ class MeetupEvents extends Component {
     const meetups = this.props.meetups.map((meetup, i) => (
       <Meetup key={i} meetup={meetup} />
     ));
+
     return (
       <div>
-        <ul>{meetups}</ul>
+        <table className="ui striped table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Sponsor</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>{meetups}</tbody>
+        </table>
       </div>
     );
   }
