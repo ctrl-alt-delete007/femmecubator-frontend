@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { createCoupon } from "../thunks/couponThunks";
-import { getCurrentUser } from "../thunks/accountThunks";
+import { fetchCurrentUser } from "../thunks/accountThunks";
 class AddCoupon extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ class AddCoupon extends Component {
       expiration: ""
     };
 
-    this.props.getCurrentUser();
+    this.props.fetchCurrentUser();
 
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -98,7 +98,7 @@ class AddCoupon extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     createCoupon: couponInfo => dispatch(createCoupon(couponInfo)),
-    getCurrentUser: () => dispatch(getCurrentUser())
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
   };
 };
 

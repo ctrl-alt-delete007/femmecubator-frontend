@@ -10,8 +10,8 @@ export const loginUser = userInfo => ({
 
 export const logoutUser = () => ({ type: "LOGOUT_USER" });
 
-export const getCurrentUserInfo = userInfo => ({
-  type: "GET_CURRENT_USER_INFO",
+export const fetchCurrentUserInfo = userInfo => ({
+  type: "FETCH_CURRENT_USER_INFO",
   payload: userInfo
 });
 

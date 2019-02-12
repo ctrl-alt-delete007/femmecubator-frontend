@@ -2,7 +2,7 @@
 import {
   registerUser,
   loginUser,
-  getCurrentUserInfo,
+  fetchCurrentUserInfo,
   loginUserFailure
 } from "../actions/accountActions";
 
@@ -40,7 +40,7 @@ export const authenticateUser = loginInfo => dispatch => {
     });
 };
 
-export const getCurrentUser = () => dispatch => {
+export const fetchCurrentUser = () => dispatch => {
   return fetch("http://localhost:3000/api/v1/current_user", {
     method: "GET",
     headers: {
@@ -56,7 +56,7 @@ export const getCurrentUser = () => dispatch => {
       const currentUser = {
         membershipInfo: data.membership
       };
-      dispatch(getCurrentUserInfo(currentUser));
+      dispatch(fetchCurrentUserInfo(currentUser));
     })
     .catch(error => {
       // debugger;

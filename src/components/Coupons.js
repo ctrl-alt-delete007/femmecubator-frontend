@@ -3,15 +3,9 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import AddCoupon from "./AddCoupon";
 import { getCoupons } from "../thunks/couponThunks";
-import { getCurrentUser } from "../thunks/accountThunks";
+import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
 import FilterCoupons from "./FilterCoupons";
-
-const divStyle = {
-  width: "272px !important",
-  height: "262.531px !important",
-  left: "952.5px"
-};
 
 class Coupons extends Component {
   constructor(props) {
@@ -22,7 +16,7 @@ class Coupons extends Component {
     };
 
     this.props.getCoupons();
-    this.props.getCurrentUser();
+    this.props.fetchCurrentUser();
 
     this.filterHandler = this.filterHandler.bind(this);
     this.addCouponHandler = this.addCouponHandler.bind(this);
@@ -90,7 +84,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCoupons: () => dispatch(getCoupons()),
-    getCurrentUser: () => dispatch(getCurrentUser())
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
   };
 };
 
