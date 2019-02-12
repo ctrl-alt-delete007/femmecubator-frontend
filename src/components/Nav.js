@@ -10,6 +10,7 @@ class NavBar extends Component {
 
     this.props.isUserLoggedIn();
 
+    this.viewAccountHandler = this.viewAccountHandler.bind(this);
     this.logoutHandler = this.logoutHandler.bind(this);
   }
 
@@ -50,7 +51,7 @@ class NavBar extends Component {
                   <NavLink
                     className="item"
                     to="/account"
-                    isActive={this.logoutHandler}
+                    isActive={this.viewAccountHandler}
                   >
                     View Account
                   </NavLink>
@@ -69,6 +70,12 @@ class NavBar extends Component {
         </div>
       </div>
     );
+  }
+
+  viewAccountHandler(e) {
+    if (this.props.location.pathname === "/account") {
+      console.log("clicked");
+    }
   }
 
   logoutHandler() {

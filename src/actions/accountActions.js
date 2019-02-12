@@ -18,3 +18,7 @@ export const fetchCurrentUserInfo = userInfo => ({
 export const loginUserFailure = () => ({ type: "LOGIN_USER_FAILURE" });
 
 export const isUserLoggedIn = () => ({ type: "CHECK_TOKEN" });
+
+export const getCurrentUserFromStore = () => ({
+  type: "GET_CURRENT_USER_FROM_STORE"
+});

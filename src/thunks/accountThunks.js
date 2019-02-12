@@ -1,4 +1,5 @@
 // import { pushState } from "react-router";
+import jwt from "jwt-simple";
 import {
   registerUser,
   loginUser,
@@ -15,10 +16,15 @@ export const createUser = userInfo => dispatch => {
     .then(res => res.json())
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
+
       const currentUser = {
         token: membership.jwt,
         membershipInfo: membership.member
       };
+
+      const userInfo = JSON.stringify(currentUser.membershipInfo);
+      localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
+
       dispatch(registerUser(currentUser));
     });
 };
@@ -32,10 +38,15 @@ export const authenticateUser = loginInfo => dispatch => {
     .then(res => res.json())
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
+
       const currentUser = {
         token: membership.jwt,
         membershipInfo: membership.member
       };
+
+      const userInfo = JSON.stringify(currentUser.membershipInfo);
+      localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
+
       dispatch(loginUser(currentUser));
     });
 };
@@ -56,6 +67,10 @@ export const fetchCurrentUser = () => dispatch => {
       const currentUser = {
         membershipInfo: data.membership
       };
+
+      const userInfo = JSON.stringify(currentUser.membershipInfo);
+      localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
+
       dispatch(fetchCurrentUserInfo(currentUser));
     })
     .catch(error => {
