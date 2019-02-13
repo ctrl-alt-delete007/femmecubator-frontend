@@ -6,9 +6,6 @@ import { connect } from "react-redux";
 class Wishlists extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      wishlists: []
-    };
 
     this.props.fetchCurrentUser();
   }

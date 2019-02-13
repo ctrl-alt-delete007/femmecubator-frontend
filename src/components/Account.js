@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getCurrentUserFromStore } from "../actions/accountActions";
 import Wishlists from "./Wishlists";
+import EditAccountInfo from "./EditAccountInfo";
 
 class Account extends Component {
   constructor(props) {
@@ -32,9 +33,9 @@ class Account extends Component {
         </div>
         <div className="ui bottom attached segment">
           {this.state.tab1 ? (
-            <Wishlists wishlists={this.props.currentUser.coupons} />
+            <Wishlists />
           ) : (
-            "tab2"
+            <EditAccountInfo currentUser={this.props.currentUser} />
           )}
         </div>
       </Fragment>

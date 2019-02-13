@@ -43,6 +43,9 @@ class NavBar extends Component {
                   <NavLink className="item" to="/account">
                     View Account
                   </NavLink>
+                  <NavLink className="item" to="/addCoupon">
+                    Add Coupon
+                  </NavLink>
                   <NavLink
                     className="item"
                     to="/logout"
