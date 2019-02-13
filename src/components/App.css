@@ -236,3 +236,10 @@ a.fbook:active {
 .form-input {
   width: 257px;
 }
+
+.header-title {
+  font-size: 50px;
+}
+.header-subtitle {
+  margin-left: 10px;
+}

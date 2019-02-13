@@ -2,12 +2,12 @@ import React, { Component, Fragment } from "react";
 import Meetup from "./meetup";
 import { connect } from "react-redux";
 import { getMeetups } from "../thunks/eventThunks";
-import FilterEvents from './FilterEvents'
+import FilterEvents from "./FilterEvents";
 
 class MeetupEvents extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       q: ""
     };
@@ -18,8 +18,9 @@ class MeetupEvents extends Component {
   }
 
   render() {
-    
-    const filteredEvents = this.props.meetups.filter(meetup => meetup.name.toLowerCase().includes(this.state.q.toLowerCase()));
+    const filteredEvents = this.props.meetups.filter(meetup =>
+      meetup.name.toLowerCase().includes(this.state.q.toLowerCase())
+    );
 
     const meetups = filteredEvents.map((meetup, i) => (
       <Meetup key={i} meetup={meetup} />
@@ -27,33 +28,29 @@ class MeetupEvents extends Component {
 
     return (
       <Fragment>
+        <div className="Introducing-Access-P">
+          <span className="header-title">Women in Tech Events</span>
+          <p className="header-subtitle">
+            Easily search events, classes, groups from Meetup.com
+          </p>
+        </div>
 
-      <div className="Introducing-Access-P">
-      
-            <span>Women in Tech Events</span>
-            <p>Easily search events, classes, groups from Meetup.com</p>
-      
-      </div>
+        <FilterEvents filterHandler={this.filterHandler} />
 
-      <FilterEvents filterHandler={this.filterHandler} />
-
-      <div>
-
-        <table className="ui striped table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Sponsor</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody>{meetups}</tbody>
-        </table>
-
-      </div>
-
+        <div>
+          <table className="ui striped table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Sponsor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>{meetups}</tbody>
+          </table>
+        </div>
       </Fragment>
     );
   }

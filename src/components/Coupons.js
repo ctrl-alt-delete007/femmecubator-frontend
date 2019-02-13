@@ -51,8 +51,10 @@ class Coupons extends Component {
           </div> */}
 
         <div className="Introducing-Access-P">
-          <span>Introducing Access Pass</span>
-          <p>Get access to discounts offered by our partners.</p>
+          <span className="header-title">Introducing Access Pass</span>
+          <p className="header-subtitle">
+            Get access to discounts offered by our partners.
+          </p>
         </div>
         <FilterCoupons filterHandler={this.filterHandler} />
 
