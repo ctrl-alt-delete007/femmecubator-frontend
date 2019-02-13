@@ -4,7 +4,8 @@ import {
   registerUser,
   loginUser,
   fetchCurrentUserInfo,
-  loginUserFailure
+  loginUserFailure,
+  updateCurrentUserInfo
 } from "../actions/accountActions";
 
 export const createUser = userInfo => dispatch => {
@@ -22,6 +23,27 @@ export const createUser = userInfo => dispatch => {
         membershipInfo: membership.member
       };
 
+      const userInfo = JSON.stringify(currentUser.membershipInfo);
+      localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
+
+      dispatch(registerUser(currentUser));
+    });
+};
+
+export const updateUser = userInfo => dispatch => {
+  return fetch(`http://localhost:3000/api/v1/members/${userInfo.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token")
+    },
+    body: JSON.stringify({ user_info: userInfo })
+  })
+    .then(res => res.json())
+    .then(membership => {
+      const currentUser = {
+        membershipInfo: membership.member
+      };
       const userInfo = JSON.stringify(currentUser.membershipInfo);
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 

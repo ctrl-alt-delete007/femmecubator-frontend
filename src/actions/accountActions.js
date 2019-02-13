@@ -22,3 +22,8 @@ export const isUserLoggedIn = () => ({ type: "CHECK_TOKEN" });
 export const getCurrentUserFromStore = () => ({
   type: "GET_CURRENT_USER_FROM_STORE"
 });
+
+export const updateCurrentUserInfo = userInfo => ({
+  type: "UPDATE_CURRENT_USER_INFO",
+  payload: userInfo
+});

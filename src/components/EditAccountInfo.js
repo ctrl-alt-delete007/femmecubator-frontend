@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { createUser } from "../thunks/accountThunks";
+import { updateUser } from "../thunks/accountThunks";
 
 class EditAccountInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.currentUser.membershipInfo.id,
       first_name: this.props.currentUser.membershipInfo.first_name,
       last_name: this.props.currentUser.membershipInfo.last_name,
       email: this.props.currentUser.membershipInfo.email,
@@ -72,15 +73,15 @@ class EditAccountInfo extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.createUser(this.state);
-    this.setState({ first_name: "", last_name: "", email: "", password: "" });
+    console.log(this.props);
+    this.props.updateUser(this.state);
     e.target.reset();
     // !! ROUTE to main page
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return { createUser: userInfo => dispatch(createUser(userInfo)) };
+  return { updateUser: userInfo => dispatch(updateUser(userInfo)) };
 };
 
 export default connect(
