@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
-// import AddCoupon from "./AddCoupon";
 import { getCoupons } from "../thunks/couponThunks";
 import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
@@ -25,20 +23,15 @@ class Coupons extends Component {
     this.filterHandler = this.filterHandler.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.getCoupons();
-  }
-
   render() {
     let filteredCoupons = [];
     if (this.state.q === "") {
-      filteredCoupons = this.props.coupons.coupons;
+      filteredCoupons = this.props.coupons.coupons || [{}];
     } else {
       filteredCoupons = this.props.coupons.coupons.filter(coupon =>
         coupon.description.toLowerCase().includes(this.state.q.toLowerCase())
-      );
+      ) || [{}];
     }
-
     const coupons = filteredCoupons.map((coupon, i) => (
       <Coupon
         key={i}
@@ -77,6 +70,7 @@ class Coupons extends Component {
 
 const mapStateToProps = state => {
   return { coupons: state.couponsInfo, user: state.accountInfo };
+  // return { coupons: state.couponsInfo };
 };
 
 const mapDispatchToProps = dispatch => {

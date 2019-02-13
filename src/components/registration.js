@@ -69,12 +69,10 @@ class Registration extends Component {
     });
   }
 
-  submitHandler(e) {
+  async submitHandler(e) {
     e.preventDefault();
-    this.props.createUser(this.state);
-    this.setState({ first_name: "", last_name: "", email: "", password: "" });
-    e.target.reset();
-    // !! ROUTE to main page
+    await this.props.createUser(this.state);
+    this.props.history.push("/coupons");
   }
 }
 

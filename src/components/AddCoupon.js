@@ -25,6 +25,7 @@ class AddCoupon extends Component {
           <div className="field">
             <label htmlFor="coupon_code">Coupon Code: </label>
             <input
+              className="ui input"
               type="text"
               onChange={this.changeHandler}
               name="coupon_code"
@@ -35,6 +36,7 @@ class AddCoupon extends Component {
           <div className="field">
             <label htmlFor="sponsor">Sponsor: </label>
             <input
+              className="ui input"
               type="text"
               onChange={this.changeHandler}
               name="sponsor"
@@ -45,7 +47,8 @@ class AddCoupon extends Component {
           <div className="field">
             <label htmlFor="description">Description: </label>
             <input
-              type="textarea"
+              className="ui input"
+              type="text"
               onChange={this.changeHandler}
               name="description"
               value={this.state.description}
@@ -55,6 +58,7 @@ class AddCoupon extends Component {
           <div className="field">
             <label htmlFor="expiration">Expiration Date: </label>
             <input
+              className="ui input"
               type="date"
               onChange={this.changeHandler}
               name="expiration"

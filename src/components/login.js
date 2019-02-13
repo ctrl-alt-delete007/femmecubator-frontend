@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticateUser } from "../thunks/accountThunks";
+import { NavLink } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -53,7 +54,9 @@ class Login extends Component {
         <br />
         <div className="child-div-login">
           <p>Don't have an account yet?</p>
-          <p>Create an account</p>
+          <p>
+            <NavLink to="/signup">Create an account</NavLink>
+          </p>
         </div>
       </div>
     );
