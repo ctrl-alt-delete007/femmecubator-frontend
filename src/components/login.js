@@ -65,13 +65,11 @@ class Login extends Component {
     });
   }
 
-  submitHandler(e) {
+  async submitHandler(e) {
     e.preventDefault();
-    this.props.authenticateUser(this.state);
-    this.setState({
-      email: "",
-      password: ""
-    });
+
+    await this.props.authenticateUser(this.state);
+
     this.props.history.push("/coupons");
   }
 }

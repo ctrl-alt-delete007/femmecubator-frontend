@@ -61,6 +61,7 @@ export const authenticateUser = loginInfo => dispatch => {
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
 
+      // console.log("in accountThunks", localStorage.getItem("token"));
       const currentUser = {
         token: membership.jwt,
         membershipInfo: membership.member

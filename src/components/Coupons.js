@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import AddCoupon from "./AddCoupon";
+// import { Redirect } from "react-router-dom";
+// import AddCoupon from "./AddCoupon";
 import { getCoupons } from "../thunks/couponThunks";
 import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
@@ -15,36 +15,49 @@ class Coupons extends Component {
       q: ""
     };
 
-    this.props.getCoupons();
-    this.props.fetchCurrentUser();
+    // console.log("in coupons constructor", localStorage.getItem("token"));
+
+    if (localStorage.getItem("token") !== null) {
+      this.props.fetchCurrentUser();
+      this.props.getCoupons();
+
+      // this.addCouponHandler = this.addCouponHandler.bind(this);
+    } else {
+      // console.log("going back to login because localStorate is null");
+      this.props.history.push("/login");
+    }
 
     this.filterHandler = this.filterHandler.bind(this);
-    this.addCouponHandler = this.addCouponHandler.bind(this);
+  }
+
+  componentDidMount() {
+    // this.props.getCoupons();
   }
 
   render() {
-    console.log();
-    if (localStorage.getItem("token") !== null) {
-      let filteredCoupons = [];
-      if (this.state.q === "") {
-        filteredCoupons = this.props.coupons.coupons;
-      } else {
-        filteredCoupons = this.props.coupons.coupons.filter(coupon =>
-          coupon.description.toLowerCase().includes(this.state.q.toLowerCase())
-        );
-      }
+    // console.log("in coupons render", localStorage.getItem("token"));
+    // console.log("in coupons render", this.props.user);
+    // if (localStorage.getItem("token") !== null) {
+    let filteredCoupons = [];
+    if (this.state.q === "") {
+      filteredCoupons = this.props.coupons.coupons;
+    } else {
+      filteredCoupons = this.props.coupons.coupons.filter(coupon =>
+        coupon.description.toLowerCase().includes(this.state.q.toLowerCase())
+      );
+    }
 
-      const coupons = filteredCoupons.map((coupon, i) => (
-        <Coupon
-          key={i}
-          coupon={coupon}
-          user={this.props.user.currentUser.membershipInfo || {}}
-        />
-      ));
+    const coupons = filteredCoupons.map((coupon, i) => (
+      <Coupon
+        key={i}
+        coupon={coupon}
+        user={this.props.user.currentUser.membershipInfo || {}}
+      />
+    ));
 
-      return (
-        <Fragment>
-          {/* <div id="social">
+    return (
+      <Fragment>
+        {/* <div id="social">
             <a
               className="fbook"
               onClick={this.addCouponHandler}
@@ -52,27 +65,28 @@ class Coupons extends Component {
             />
           </div> */}
 
-          <div className="Introducing-Access-P">
-            <span>Introducing Access Pass</span>
-            <p>Get access to discounts offered by our partners.</p>
-          </div>
-          <FilterCoupons filterHandler={this.filterHandler} />
+        <div className="Introducing-Access-P">
+          <span>Introducing Access Pass</span>
+          <p>Get access to discounts offered by our partners.</p>
+        </div>
+        <FilterCoupons filterHandler={this.filterHandler} />
 
-          <div className="coupon-contents">
-            <div className="ui cards">{coupons}</div>
-          </div>
-        </Fragment>
-      );
-    } else {
-      return <Redirect to="/login" />;
-    }
+        <div className="coupon-contents">
+          <div className="ui cards">{coupons}</div>
+        </div>
+      </Fragment>
+    );
+    // } else {
+    // this.props.history.push("/login");
+    // return <Redirect to="/login" />;
+    // }
   }
 
   filterHandler(q) {
     this.setState({ q });
   }
 
-  addCouponHandler() {}
+  // addCouponHandler() {}
 }
 
 const mapStateToProps = state => {

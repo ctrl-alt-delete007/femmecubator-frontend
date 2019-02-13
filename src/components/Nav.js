@@ -37,8 +37,10 @@ class NavBar extends Component {
             </NavLink>
             {localStorage.getItem("token") !== null ? (
               <div className="ui simple dropdown item">
-                Account
-                <i className="dropdown icon" />
+                <div className="css-menu">
+                  Account
+                  <i className="dropdown icon" />
+                </div>
                 <div className="menu">
                   <NavLink className="item" to="/account">
                     View Account
