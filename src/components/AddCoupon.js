@@ -21,52 +21,48 @@ class AddCoupon extends Component {
   render() {
     return (
       <Fragment>
-        <form onSubmit={this.submitHandler}>
-          <ul>
-            <li className="accountForms">
-              <label htmlFor="coupon_code">Coupon Code: </label>
-              <input
-                type="text"
-                onChange={this.changeHandler}
-                name="coupon_code"
-                id="coupon_code"
-                value={this.state.coupon_code}
-              />
-            </li>
-            <li className="accountForms">
-              <label htmlFor="sponsor">Sponsor: </label>
-              <input
-                type="text"
-                onChange={this.changeHandler}
-                name="sponsor"
-                id="sponsor"
-                value={this.state.sponsor}
-              />
-            </li>
-            <li className="accountForms">
-              <label htmlFor="description">Description: </label>
-              <input
-                type="textarea"
-                onChange={this.changeHandler}
-                name="description"
-                value={this.state.description}
-                id="description"
-              />
-            </li>
-            <li className="accountForms">
-              <label htmlFor="expiration">Expiration Date: </label>
-              <input
-                type="date"
-                onChange={this.changeHandler}
-                name="expiration"
-                id="expiration"
-                value={this.state.expiration}
-              />
-            </li>
-            <li className="accountForms">
-              <input type="submit" value="submit" />
-            </li>
-          </ul>
+        <form onSubmit={this.submitHandler} className="ui form">
+          <div className="field">
+            <label htmlFor="coupon_code">Coupon Code: </label>
+            <input
+              type="text"
+              onChange={this.changeHandler}
+              name="coupon_code"
+              id="coupon_code"
+              value={this.state.coupon_code}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="sponsor">Sponsor: </label>
+            <input
+              type="text"
+              onChange={this.changeHandler}
+              name="sponsor"
+              id="sponsor"
+              value={this.state.sponsor}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="description">Description: </label>
+            <input
+              type="textarea"
+              onChange={this.changeHandler}
+              name="description"
+              value={this.state.description}
+              id="description"
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="expiration">Expiration Date: </label>
+            <input
+              type="date"
+              onChange={this.changeHandler}
+              name="expiration"
+              id="expiration"
+              value={this.state.expiration}
+            />
+          </div>
+          <input className="ui button" type="submit" value="submit" />
         </form>
       </Fragment>
     );

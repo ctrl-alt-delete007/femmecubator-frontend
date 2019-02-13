@@ -2,8 +2,9 @@ import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser, isUserLoggedIn } from "../actions/accountActions";
-import { withRouter, Redirect } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
+import { Modal } from "semantic-ui-react";
+import AddCoupon from "./AddCoupon";
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -45,9 +46,16 @@ class NavBar extends Component {
                   <NavLink className="item" to="/account">
                     View Account
                   </NavLink>
-                  <NavLink className="item" to="/addCoupon">
-                    Add Coupon
-                  </NavLink>
+
+                  <Modal
+                    size={"mini"}
+                    trigger={<div className="item">Add Coupon</div>}
+                  >
+                    <Modal.Header>Add a Coupon</Modal.Header>
+                    <Modal.Content image>
+                      <AddCoupon />
+                    </Modal.Content>
+                  </Modal>
                   <NavLink
                     className="item"
                     to="/logout"

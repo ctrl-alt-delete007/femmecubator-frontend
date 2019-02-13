@@ -6,10 +6,9 @@ import Registration from "./registration";
 import Login from "./login";
 import Coupons from "./Coupons";
 import AddCoupon from "./AddCoupon";
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import NavBar from "./Nav";
 
-// console.log("api key", process.env.REACT_APP_API_KEY_MEETUP);
 class App extends Component {
   render() {
     return (
@@ -22,7 +21,6 @@ class App extends Component {
           <Route path="/events" component={MeetupEvents} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
-          {/* <Route path="/" component={App} /> */}
         </Switch>
 
         {this.props.location.pathname === "/" ? (

@@ -15,15 +15,10 @@ class Coupons extends Component {
       q: ""
     };
 
-    // console.log("in coupons constructor", localStorage.getItem("token"));
-
     if (localStorage.getItem("token") !== null) {
       this.props.fetchCurrentUser();
       this.props.getCoupons();
-
-      // this.addCouponHandler = this.addCouponHandler.bind(this);
     } else {
-      // console.log("going back to login because localStorate is null");
       this.props.history.push("/login");
     }
 
@@ -35,9 +30,6 @@ class Coupons extends Component {
   }
 
   render() {
-    // console.log("in coupons render", localStorage.getItem("token"));
-    // console.log("in coupons render", this.props.user);
-    // if (localStorage.getItem("token") !== null) {
     let filteredCoupons = [];
     if (this.state.q === "") {
       filteredCoupons = this.props.coupons.coupons;
@@ -76,17 +68,11 @@ class Coupons extends Component {
         </div>
       </Fragment>
     );
-    // } else {
-    // this.props.history.push("/login");
-    // return <Redirect to="/login" />;
-    // }
   }
 
   filterHandler(q) {
     this.setState({ q });
   }
-
-  // addCouponHandler() {}
 }
 
 const mapStateToProps = state => {

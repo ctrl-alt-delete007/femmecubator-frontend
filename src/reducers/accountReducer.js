@@ -32,7 +32,10 @@ const reducer = (state = initialState, action) => {
       const userInfo = JSON.parse(
         jwt.decode(localStorage.getItem("userInfo"), "$ec123t")
       );
-      return { currentUser: userInfo };
+      return { ...state, currentUser: userInfo };
+    }
+    case "UPDATE_CURRENT_USER_INFO": {
+      return { ...state, currentUser: action.payload };
     }
     default:
       return state;
