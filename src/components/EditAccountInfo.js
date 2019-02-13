@@ -71,12 +71,10 @@ class EditAccountInfo extends Component {
     });
   }
 
-  submitHandler(e) {
+  async submitHandler(e) {
     e.preventDefault();
-    console.log(this.props);
-    this.props.updateUser(this.state);
-    e.target.reset();
-    // !! ROUTE to main page
+    await this.props.updateUser(this.state);
+    this.props.history.push("/account");
   }
 }
 

@@ -127,7 +127,8 @@ body {
   background-color: #eaeff3;
 }
 
-#login-btn {
+#login-btn,
+#registration-btn {
   margin-top: 10px;
   background-color: #5de0b5;
 }
@@ -216,4 +217,22 @@ a.fbook:active {
 
 .css-menu {
   margin-bottom: 0px;
+}
+
+#registration-form {
+  display: inline-block;
+}
+
+.registration {
+  text-align: center;
+}
+
+.error-message {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: red;
+}
+
+.form-input {
+  width: 257px;
 }
