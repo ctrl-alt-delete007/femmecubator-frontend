@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getCurrentUserFromStore } from "../actions/accountActions";
+import Wishlists from "./Wishlists";
 
 class Account extends Component {
   constructor(props) {
@@ -23,14 +24,18 @@ class Account extends Component {
           className="ui top attached tabular menu"
         >
           <a name="t1" className={this.state.tab1 ? "item active" : "item"}>
-            Tab 1
+            My Wishlist
           </a>
           <a name="t2" className={this.state.tab2 ? "item active" : "item"}>
-            Tab 2
+            Edit Account
           </a>
         </div>
         <div className="ui bottom attached segment">
-          {this.state.tab1 ? "tab1" : "tab2"}
+          {this.state.tab1 ? (
+            <Wishlists wishlists={this.props.currentUser.coupons} />
+          ) : (
+            "tab2"
+          )}
         </div>
       </Fragment>
     );
