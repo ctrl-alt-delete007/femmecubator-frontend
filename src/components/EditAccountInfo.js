@@ -21,8 +21,8 @@ class EditAccountInfo extends Component {
     console.log();
     return (
       <Fragment>
-        <div className="parent-div-login">
-          <div className="child-div-login">
+        <div className="parent-div-edit-acct">
+          <div className="child-div-edit-acct">
             <form className="login-form" onSubmit={this.submitHandler}>
               <h3 className="">Membership Level: Career-Switcher</h3>
               <p id="update-subtitle">Your account is free forever!</p>

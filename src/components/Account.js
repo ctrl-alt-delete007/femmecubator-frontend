@@ -24,12 +24,22 @@ class Account extends Component {
           onClick={this.clickHandler}
           className="ui top attached tabular menu"
         >
-          <a name="t1" className={this.state.tab1 ? "item active" : "item"}>
+          <button
+            name="t1"
+            className={
+              this.state.tab1 ? "item active link-button" : "item link-button"
+            }
+          >
             My Wishlist
-          </a>
-          <a name="t2" className={this.state.tab2 ? "item active" : "item"}>
+          </button>
+          <button
+            name="t2"
+            className={
+              this.state.tab2 ? "item active link-button" : "item link-button"
+            }
+          >
             Edit Account
-          </a>
+          </button>
         </div>
         <div className="ui bottom attached segment">
           {this.state.tab1 ? (

@@ -39,7 +39,11 @@ class App extends Component {
                 <div className="signup-button">
                   <button
                     id="signup-btn"
-                    className="positive huge ui button"
+                    className={
+                      localStorage.getItem("token") === null
+                        ? "positive huge ui button"
+                        : "positive huge ui disabled button"
+                    }
                     onClick={this.signupHandler}
                   >
                     Get Started

@@ -101,6 +101,21 @@
   background-color: #eaeff3;
 }
 
+.parent-div-edit-acct {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.child-div-edit-acct {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: inline-block;
+  border: 1px solid #888888;
+  padding: 10px;
+  box-shadow: 1px 5px #888888;
+  background-color: #ffffff;
+}
+
 .child-div-login {
   margin-top: 50px;
   display: inline-block;
@@ -266,4 +281,19 @@ a.fbook:active {
 
 * {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: none;
 }
