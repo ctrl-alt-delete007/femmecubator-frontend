@@ -13,6 +13,10 @@ class Account extends Component {
       tab2: false
     };
 
+    if (localStorage.getItem("token") === null) {
+      this.props.history.push("/login");
+    }
+
     this.props.fetchCurrentUser();
     this.clickHandler = this.clickHandler.bind(this);
   }
