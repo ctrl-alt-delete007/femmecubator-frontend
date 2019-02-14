@@ -5,6 +5,7 @@ import { logoutUser, isUserLoggedIn } from "../actions/accountActions";
 import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 import AddCoupon from "./AddCoupon";
+import logo from "../images/logo_femmecubator.png";
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,9 @@ class NavBar extends Component {
       <div className="ui inverted segment" id="navbar">
         <div className="ui inverted secondary pointing menu" id="innerNavBar">
           <div className="header item" id="logo">
-            <NavLink to="/">Femmecubator</NavLink>
+            <NavLink to="/">
+              <img className="logo" src={logo} alt="logo" />
+            </NavLink>
           </div>
           <div className="right menu">
             <NavLink

@@ -297,3 +297,8 @@ a.fbook:active {
 .link-button:focus {
   text-decoration: none;
 }
+
+.logo {
+  height: 75px;
+  width: 248px;
+}

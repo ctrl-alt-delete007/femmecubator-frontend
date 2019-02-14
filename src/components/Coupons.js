@@ -5,7 +5,7 @@ import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
 import FilterCoupons from "./FilterCoupons";
 import { getCurrentUserState } from "../actions/accountActions";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 class Coupons extends Component {
   constructor(props) {
