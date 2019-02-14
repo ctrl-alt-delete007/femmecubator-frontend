@@ -3,6 +3,11 @@ export const registerUser = userInfo => ({
   payload: userInfo
 });
 
+export const registerUserFailure = registrationError => ({
+  type: "REGISTER_USER_FAILURE",
+  payload: registrationError
+});
+
 export const loginUser = userInfo => ({
   type: "LOGIN_USER",
   payload: userInfo
@@ -27,3 +32,5 @@ export const updateCurrentUserInfo = userInfo => ({
   type: "UPDATE_CURRENT_USER_INFO",
   payload: userInfo
 });
+
+export const getCurrentUserState = () => ({ type: "DEFAULT" });

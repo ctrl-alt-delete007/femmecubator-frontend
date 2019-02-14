@@ -4,6 +4,8 @@ import { getCoupons } from "../thunks/couponThunks";
 import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
 import FilterCoupons from "./FilterCoupons";
+import { getCurrentUserState } from "../actions/accountActions";
+import { Redirect } from "react-router-dom";
 
 class Coupons extends Component {
   constructor(props) {
@@ -13,17 +15,35 @@ class Coupons extends Component {
       q: ""
     };
 
+    this.props.getCurrentUserState();
+
+    // if (localStorage.getItem("token") !== null) {
     if (localStorage.getItem("token") !== null) {
       this.props.fetchCurrentUser();
       this.props.getCoupons();
-    } else {
-      this.props.history.push("/login");
     }
+    // else {
+    //   this.props.history.push("/login");
+    // }
 
     this.filterHandler = this.filterHandler.bind(this);
   }
 
   render() {
+    // debugger;
+    // console.log("coupons", this.props.user.registrationStatus);
+    if (this.props.user.registrationStatus.error.message === "406") {
+      this.props.history.push({
+        pathname: "/signup",
+        state: {
+          registrationData: this.props.user.registrationStatus.userInfo,
+          error: "Email already registered!"
+        }
+      });
+    } else if (!this.props.user.isUserLoggedIn) {
+      this.props.history.push("/login");
+    }
+
     let filteredCoupons = [];
     if (this.state.q === "") {
       filteredCoupons = this.props.coupons.coupons || [{}];
@@ -78,7 +98,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCoupons: () => dispatch(getCoupons()),
-    fetchCurrentUser: () => dispatch(fetchCurrentUser())
+    fetchCurrentUser: () => dispatch(fetchCurrentUser()),
+    getCurrentUserState: () => dispatch(getCurrentUserState())
   };
 };
 

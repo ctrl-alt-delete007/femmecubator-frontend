@@ -5,7 +5,8 @@ import {
   loginUser,
   fetchCurrentUserInfo,
   loginUserFailure,
-  updateCurrentUserInfo
+  updateCurrentUserInfo,
+  registerUserFailure
 } from "../actions/accountActions";
 
 export const createUser = userInfo => dispatch => {
@@ -14,7 +15,10 @@ export const createUser = userInfo => dispatch => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user_info: userInfo })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 406) throw new Error(res.status);
+      else res.json();
+    })
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
 
@@ -27,6 +31,10 @@ export const createUser = userInfo => dispatch => {
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
       dispatch(registerUser(currentUser));
+    })
+    .catch(error => {
+      const registrationErrorData = { userInfo: userInfo, error: error };
+      dispatch(registerUserFailure(registrationErrorData));
     });
 };
 

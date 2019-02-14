@@ -5,12 +5,25 @@ import { NavLink } from "react-router-dom";
 class Registration extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      first_name: "",
-      last_name: "",
-      email: "",
+      first_name:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.registrationData.first_name,
+      last_name:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.registrationData.last_name,
+      email:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.registrationData.email,
       password: "",
-      error: ""
+      error:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.error
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -133,6 +146,7 @@ class Registration extends Component {
     } else {
       await this.props.createUser(registrationInfo);
       this.props.history.push("/coupons");
+      // <Redirect to="/coupons" />;
     }
   }
 }
