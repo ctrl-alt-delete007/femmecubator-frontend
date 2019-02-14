@@ -34,12 +34,7 @@ class Coupon extends Component {
             onClick={this.addToWishListHandler}
             style={{ backgroundColor: "#5de0b5" }}
           >
-            <i
-              className="add icon"
-              style={{ color: "#FFFFFF", fontSize: "1.5em" }}
-            >
-              wishlist
-            </i>
+            <span className="wishlist-btn-txt">add to wishlist</span>
           </div>
         </div>
       </div>
