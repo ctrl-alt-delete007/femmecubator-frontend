@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isUserLoggedIn: false,
         currentUser: {},
-        authenticationStatus: "AUTHENTICATION_FAILURE"
+        authenticationStatus: "UNAUTHORIZED"
       };
     }
     case "FETCH_CURRENT_USER_INFO": {

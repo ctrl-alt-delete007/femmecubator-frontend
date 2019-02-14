@@ -41,8 +41,15 @@ class Coupons extends Component {
         }
       });
     } else if (localStorage.getItem("token") === null) {
-      console.log("render else if block", localStorage.getItem("token"));
       this.props.history.push("/login");
+    } else if (this.props.user.authenticationStatus === "UNAUTHORIZED") {
+      this.props.history.push({
+        pathname: "/login",
+        state: {
+          email: this.props.location.state.email,
+          error: "Invalid account information!"
+        }
+      });
     }
 
     let filteredCoupons = [];

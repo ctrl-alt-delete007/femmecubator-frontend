@@ -73,7 +73,10 @@ export const authenticateUser = loginInfo => dispatch => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ login_info: loginInfo })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 401) throw new Error(res.status);
+      else return res.json();
+    })
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
 
@@ -86,7 +89,8 @@ export const authenticateUser = loginInfo => dispatch => {
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
       dispatch(loginUser(currentUser));
-    });
+    })
+    .catch(error => dispatch(loginUserFailure("Unauthorized")));
 };
 
 export const fetchCurrentUser = () => dispatch => {
@@ -113,7 +117,7 @@ export const fetchCurrentUser = () => dispatch => {
     })
     .catch(error => {
       if (error.message === "401") {
-        dispatch(loginUserFailure());
+        dispatch(loginUserFailure("Unauthorized"));
       }
     });
 };

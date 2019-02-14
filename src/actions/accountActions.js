@@ -20,7 +20,10 @@ export const fetchCurrentUserInfo = userInfo => ({
   payload: userInfo
 });
 
-export const loginUserFailure = () => ({ type: "LOGIN_USER_FAILURE" });
+export const loginUserFailure = error => ({
+  type: "LOGIN_USER_FAILURE",
+  payload: error
+});
 
 export const isUserLoggedIn = () => ({ type: "CHECK_TOKEN" });
 

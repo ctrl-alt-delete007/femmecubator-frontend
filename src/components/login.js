@@ -9,9 +9,15 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      email: "",
+      email:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.email,
       password: "",
-      error: ""
+      error:
+        this.props.location.state === undefined
+          ? ""
+          : this.props.location.state.error
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -88,7 +94,12 @@ class Login extends Component {
       this.setState({ error: "All fields are required!" });
     } else {
       await this.props.authenticateUser(loginInfo);
-      this.props.history.push("/coupons");
+      this.props.history.push({
+        pathname: "/coupons",
+        state: {
+          email: this.state.email
+        }
+      });
     }
   }
 }
