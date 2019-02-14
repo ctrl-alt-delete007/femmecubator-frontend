@@ -1,25 +1,26 @@
 const initialState = {
   currentUser: {},
-  isUserLoggedIn: false
+  isUserLoggedIn: false,
+  authenticationStatus: ''
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_USER": {
-      return { ...state, isUserLoggedIn: true, currentUser: action.payload };
+      return { ...state, isUserLoggedIn: true, currentUser: action.payload, authenticationStatus: 'AUTHENTICATION_SUCCESS' };
     }
     case "REGISTER_USER": {
-      return { ...state, currentUser: action.payload };
+      return { ...state, currentUser: action.payload, isUserLoggedIn: true, authenticationStatus: 'LOGIN_SUCCESS' };
     }
     case "LOGIN_USER_FAILURE": {
-      return { ...state, isUserLoggedIn: false, currentUser: {} };
+      return { ...state, isUserLoggedIn: false, currentUser: {}, authenticationStatus: 'AUTHENTICATION_FAILURE' };
     }
     case "FETCH_CURRENT_USER_INFO": {
-      return { ...state, isUserLoggedIn: true, currentUser: action.payload };
+      return { ...state, isUserLoggedIn: true, currentUser: action.payload, authenticationStatus: 'AUTHENTICATION_SUCCESS' };
     }
     case "LOGOUT_USER": {
       localStorage.clear();
-      return { ...state, isUserLoggedIn: false, currentUser: {} };
+      return { ...state, isUserLoggedIn: false, currentUser: {},  authenticationStatus: ''};
     }
     case "CHECK_TOKEN": {
       if (localStorage.getItem("token") !== null)
@@ -33,7 +34,7 @@ const reducer = (state = initialState, action) => {
     //   return { ...state, currentUser: userInfo };
     // }
     case "UPDATE_CURRENT_USER_INFO": {
-      return { ...state, currentUser: action.payload };
+      return { ...state, currentUser: action.payload, isUserLoggedIn: true, authenticationStatus: 'AUTHENTICATION_SUCCESS' };
     }
     default:
       return state;

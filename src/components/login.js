@@ -65,9 +65,15 @@ class Login extends Component {
   }
 
   changeHandler(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    if (e.target.name === "email") {
+      this.setState({
+        [e.target.name]: e.target.value.toLowerCase()
+      });
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+    }
   }
 
   async submitHandler(e) {
