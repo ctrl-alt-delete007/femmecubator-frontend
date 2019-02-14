@@ -10,7 +10,8 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -50,6 +51,7 @@ class Login extends Component {
               id="login-btn"
             />
           </form>
+          <div className="error-message">{this.state.error}</div>
         </div>
         <br />
         <div className="child-div-login">
@@ -71,9 +73,17 @@ class Login extends Component {
   async submitHandler(e) {
     e.preventDefault();
 
-    await this.props.authenticateUser(this.state);
+    const loginInfo = {
+      email: this.state.email,
+      password: this.state.password
+    };
 
-    this.props.history.push("/coupons");
+    if (this.state.email === "" || this.state.password === "") {
+      this.setState({ error: "All fields are required!" });
+    } else {
+      await this.props.authenticateUser(loginInfo);
+      this.props.history.push("/coupons");
+    }
   }
 }
 

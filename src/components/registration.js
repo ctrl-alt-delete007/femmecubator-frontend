@@ -103,6 +103,13 @@ class Registration extends Component {
     // -check if email is duplicate
     // -password is good
 
+    const registrationInfo = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      password: this.state.password
+    };
+
     if (
       this.state.first_name === "" ||
       this.state.last_name === "" ||
@@ -118,7 +125,7 @@ class Registration extends Component {
     ) {
       this.setState({ error: "All fields require more than one character! " });
     } else {
-      await this.props.createUser(this.state);
+      await this.props.createUser(registrationInfo);
       this.props.history.push("/coupons");
     }
   }

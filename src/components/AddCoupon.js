@@ -9,7 +9,8 @@ class AddCoupon extends Component {
       coupon_code: "",
       sponsor: "",
       description: "",
-      expiration: ""
+      expiration: "",
+      error: ""
     };
 
     this.props.fetchCurrentUser();
@@ -67,6 +68,7 @@ class AddCoupon extends Component {
             />
           </div>
           <input className="ui button" type="submit" value="submit" />
+          <div className="error-message">{this.state.error}</div>
         </form>
       </Fragment>
     );
@@ -84,14 +86,26 @@ class AddCoupon extends Component {
       ...this.state,
       member_id: this.props.currentUser.membershipInfo.id
     };
-    this.props.createCoupon(couponInfo);
-    this.setState({
-      coupon_code: "",
-      sponsor: "",
-      description: "",
-      expiration: ""
-    });
-    e.target.reset();
+
+    // coupon_code, sponsor, description, expiration
+
+    if (
+      this.state.coupon_code === "" ||
+      this.state.sponsor === "" ||
+      this.state.description === "" ||
+      this.state.expiration === ""
+    ) {
+      this.setState({ error: "All fields are required! " });
+    } else {
+      this.props.createCoupon(couponInfo);
+      this.setState({
+        coupon_code: "",
+        sponsor: "",
+        description: "",
+        expiration: ""
+      });
+      e.target.reset();
+    }
   }
 }
 
