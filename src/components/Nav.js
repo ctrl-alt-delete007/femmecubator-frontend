@@ -18,7 +18,7 @@ class NavBar extends Component {
     return (
       <div className="ui inverted segment" id="navbar">
         <div className="ui inverted secondary pointing menu" id="innerNavBar">
-          <div className="header item">
+          <div className="header item" id="logo">
             <NavLink to="/">Femmecubator</NavLink>
           </div>
           <div className="right menu">

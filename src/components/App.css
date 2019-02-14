@@ -244,3 +244,11 @@ a.fbook:active {
 .header-subtitle {
   margin-left: 10px;
 }
+
+#logo {
+  font-size: 1.5em;
+}
+
+#update-subtitle {
+  color: #2f3aa4;
+}

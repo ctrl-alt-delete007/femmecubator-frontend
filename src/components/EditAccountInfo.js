@@ -25,7 +25,7 @@ class EditAccountInfo extends Component {
           <div className="child-div-login">
             <form className="login-form" onSubmit={this.submitHandler}>
               <h3 className="">Membership Level: Career-Switcher</h3>
-              <p>Your account is free forever!</p>
+              <p id="update-subtitle">Your account is free forever!</p>
               <label htmlFor="first_name">First name: </label>
               <div className="ui input form-input">
                 <input
