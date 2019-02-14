@@ -34,3 +34,7 @@ export const updateCurrentUserInfo = userInfo => ({
 });
 
 export const getCurrentUserState = () => ({ type: "DEFAULT" });
+
+export const clearRegistrationError = () => ({
+  type: "CLEAR_REGISTRATION_ERROR"
+});

@@ -10,32 +10,38 @@ import {
 } from "../actions/accountActions";
 
 export const createUser = userInfo => dispatch => {
-  return fetch("http://localhost:3000/api/v1/members", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_info: userInfo })
-  })
-    .then(res => {
-      if (res.status === 406) throw new Error(res.status);
-      else res.json();
+  return (
+    fetch("http://localhost:3000/api/v1/members", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_info: userInfo })
     })
-    .then(membership => {
-      localStorage.setItem("token", membership.jwt);
+      // .then(res => res.json())
+      .then(res => {
+        if (res.statusText === "Created") {
+          return res.json();
+        } else {
+          throw new Error(res.status);
+        }
+      })
+      .then(membership => {
+        localStorage.setItem("token", membership.jwt);
 
-      const currentUser = {
-        token: membership.jwt,
-        membershipInfo: membership.member
-      };
+        const currentUser = {
+          token: membership.jwt,
+          membershipInfo: membership.member
+        };
 
-      const userInfo = JSON.stringify(currentUser.membershipInfo);
-      localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
+        const userInfo = JSON.stringify(currentUser.membershipInfo);
+        localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
-      dispatch(registerUser(currentUser));
-    })
-    .catch(error => {
-      const registrationErrorData = { userInfo: userInfo, error: error };
-      dispatch(registerUserFailure(registrationErrorData));
-    });
+        dispatch(registerUser(currentUser));
+      })
+      .catch(error => {
+        const registrationErrorData = { userInfo: userInfo, error: error };
+        dispatch(registerUserFailure(registrationErrorData));
+      })
+  );
 };
 
 export const updateUser = userInfo => dispatch => {

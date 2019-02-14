@@ -40,7 +40,8 @@ class Coupons extends Component {
           error: "Email already registered!"
         }
       });
-    } else if (!this.props.user.isUserLoggedIn) {
+    } else if (localStorage.getItem("token") === null) {
+      console.log("render else if block", localStorage.getItem("token"));
       this.props.history.push("/login");
     }
 

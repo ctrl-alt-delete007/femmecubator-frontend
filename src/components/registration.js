@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createUser } from "../thunks/accountThunks";
+import { clearRegistrationError } from "../actions/accountActions";
 import { NavLink } from "react-router-dom";
 class Registration extends Component {
   constructor(props) {
@@ -145,6 +146,10 @@ class Registration extends Component {
       this.setState({ error: "All fields must be more than one character! " });
     } else {
       await this.props.createUser(registrationInfo);
+      if (this.state.error !== "") {
+        this.props.clearRegistrationError();
+      }
+
       this.props.history.push("/coupons");
       // <Redirect to="/coupons" />;
     }
@@ -152,7 +157,10 @@ class Registration extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { createUser: userInfo => dispatch(createUser(userInfo)) };
+  return {
+    createUser: userInfo => dispatch(createUser(userInfo)),
+    clearRegistrationError: () => dispatch(clearRegistrationError())
+  };
 };
 
 export default connect(

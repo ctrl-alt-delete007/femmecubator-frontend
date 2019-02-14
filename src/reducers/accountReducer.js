@@ -2,7 +2,7 @@ const initialState = {
   currentUser: {},
   isUserLoggedIn: false,
   authenticationStatus: "",
-  registrationStatus: ""
+  registrationStatus: { error: { message: "" } }
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,6 +75,9 @@ const reducer = (state = initialState, action) => {
         isUserLoggedIn: true,
         authenticationStatus: "AUTHENTICATION_SUCCESS"
       };
+    }
+    case "CLEAR_REGISTRATION_ERROR": {
+      return { ...state, registrationStatus: { error: { message: "" } } };
     }
     default:
       return state;
