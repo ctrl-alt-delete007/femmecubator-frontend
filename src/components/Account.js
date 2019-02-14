@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getCurrentUserFromStore } from "../actions/accountActions";
+import { fetchCurrentUser } from "../thunks/accountThunks";
 import Wishlists from "./Wishlists";
 import EditAccountInfo from "./EditAccountInfo";
 
@@ -13,7 +13,7 @@ class Account extends Component {
       tab2: false
     };
 
-    this.props.getCurrentUserFromStore();
+    this.props.fetchCurrentUser();
     this.clickHandler = this.clickHandler.bind(this);
   }
 
@@ -66,7 +66,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { getCurrentUserFromStore: () => dispatch(getCurrentUserFromStore()) };
+  return { fetchCurrentUser: () => dispatch(fetchCurrentUser()) };
 };
 
 export default connect(

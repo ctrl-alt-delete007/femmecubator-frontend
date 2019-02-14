@@ -1,5 +1,3 @@
-import jwt from "jwt-simple";
-
 const initialState = {
   currentUser: {},
   isUserLoggedIn: false
@@ -28,12 +26,12 @@ const reducer = (state = initialState, action) => {
         return { ...state, isUserLoggedIn: true };
       else return { ...state, isUserLoggedIn: false };
     }
-    case "GET_CURRENT_USER_FROM_STORE": {
-      const userInfo = JSON.parse(
-        jwt.decode(localStorage.getItem("userInfo"), "$ec123t")
-      );
-      return { ...state, currentUser: userInfo };
-    }
+    // case "GET_CURRENT_USER_FROM_STORE": {
+    //   // const userInfo = JSON.parse(
+    //   //   jwt.decode(localStorage.getItem("userInfo"), "$ec123t")
+    //   // );
+    //   return { ...state, currentUser: userInfo };
+    // }
     case "UPDATE_CURRENT_USER_INFO": {
       return { ...state, currentUser: action.payload };
     }
