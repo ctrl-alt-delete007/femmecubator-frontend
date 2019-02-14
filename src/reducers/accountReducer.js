@@ -54,7 +54,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         isUserLoggedIn: false,
         currentUser: {},
-        authenticationStatus: ""
+        authenticationStatus: "",
+        registrationStatus: { error: { message: "" } }
       };
     }
     case "CHECK_TOKEN": {
