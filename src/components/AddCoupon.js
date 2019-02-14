@@ -83,8 +83,11 @@ class AddCoupon extends Component {
   submitHandler(e) {
     e.preventDefault();
     const couponInfo = {
-      ...this.state,
-      member_id: this.props.currentUser.membershipInfo.id
+      coupon_code: this.state.coupon_code,
+      sponsor: this.state.sponsor,
+      description: this.state.description,
+      expiration: this.state.expiration,
+      creator_id: this.props.currentUser.membershipInfo.id
     };
 
     // coupon_code, sponsor, description, expiration
@@ -102,7 +105,8 @@ class AddCoupon extends Component {
         coupon_code: "",
         sponsor: "",
         description: "",
-        expiration: ""
+        expiration: "",
+        error: ""
       });
       e.target.reset();
     }
