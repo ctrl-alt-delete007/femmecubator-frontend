@@ -162,7 +162,8 @@ body {
 }
 
 .Section-Title {
-  margin-top: 75px;
+  margin-top: 70px;
+  margin-bottom: 50px;
   font-family: AvenirNext;
   font-size: 30px;
   font-weight: bold;
