@@ -128,7 +128,8 @@ body {
 }
 
 #login-btn,
-#registration-btn {
+#registration-btn,
+#update-registration-btn {
   margin-top: 10px;
   background-color: #5de0b5;
 }

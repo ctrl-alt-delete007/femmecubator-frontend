@@ -123,7 +123,7 @@ class Registration extends Component {
       this.state.email.length < 2 ||
       this.state.password.length < 2
     ) {
-      this.setState({ error: "All fields require more than one character! " });
+      this.setState({ error: "All fields must be more than one character! " });
     } else {
       await this.props.createUser(registrationInfo);
       this.props.history.push("/coupons");
