@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { updateUser } from "../thunks/accountThunks";
+import { withRouter } from "react-router-dom";
 
 class EditAccountInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.currentUser.membershipInfo.id,
+      member_id: this.props.currentUser.membershipInfo.id,
       first_name: this.props.currentUser.membershipInfo.first_name,
       last_name: this.props.currentUser.membershipInfo.last_name,
       email: this.props.currentUser.membershipInfo.email,
@@ -125,7 +126,9 @@ const mapDispatchToProps = dispatch => {
   return { updateUser: userInfo => dispatch(updateUser(userInfo)) };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(EditAccountInfo);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(EditAccountInfo)
+);
