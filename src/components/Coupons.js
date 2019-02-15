@@ -30,8 +30,6 @@ class Coupons extends Component {
   }
 
   render() {
-    // debugger;
-    // console.log("coupons", this.props.user.registrationStatus);
     if (this.props.user.registrationStatus.error.message === "406") {
       this.props.history.push({
         pathname: "/signup",
@@ -41,15 +39,16 @@ class Coupons extends Component {
         }
       });
     } else if (localStorage.getItem("token") === null) {
-      this.props.history.push("/login");
-    } else if (this.props.user.authenticationStatus === "UNAUTHORIZED") {
-      this.props.history.push({
-        pathname: "/login",
-        state: {
-          email: this.props.location.state.email,
-          error: "Invalid account information!"
-        }
-      });
+      if (this.props.location.state === undefined) {
+        this.props.history.push("/login");
+      } else {
+        this.props.history.push({
+          pathname: "/login",
+          state: {
+            loginData: this.props.user.loginData
+          }
+        });
+      }
     }
 
     let filteredCoupons = [];
@@ -60,6 +59,7 @@ class Coupons extends Component {
         coupon.description.toLowerCase().includes(this.state.q.toLowerCase())
       ) || [{}];
     }
+
     const coupons = filteredCoupons.map((coupon, i) => (
       <Coupon
         key={i}

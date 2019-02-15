@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticateUser } from "../thunks/accountThunks";
 import { NavLink } from "react-router-dom";
+import { clearAuthenticationError } from "../actions/accountActions";
 
 class Login extends Component {
   constructor(props) {
@@ -12,15 +13,19 @@ class Login extends Component {
       email:
         this.props.location.state === undefined
           ? ""
-          : this.props.location.state.email,
+          : this.props.location.state.loginData.loginData,
       password: "",
       error:
         this.props.location.state === undefined
           ? ""
-          : this.props.location.state.error
+          : this.props.location.state.loginData.message
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    // this.props.clearAuthenticationError();
   }
 
   render() {
@@ -94,6 +99,7 @@ class Login extends Component {
       this.setState({ error: "All fields are required!" });
     } else {
       await this.props.authenticateUser(loginInfo);
+      // this.props.clearAuthenticationError();
       this.props.history.push({
         pathname: "/coupons",
         state: {
@@ -106,7 +112,8 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    authenticateUser: loginInfo => dispatch(authenticateUser(loginInfo))
+    authenticateUser: loginInfo => dispatch(authenticateUser(loginInfo)),
+    clearAuthenticationError: () => dispatch(clearAuthenticationError())
   };
 };
 

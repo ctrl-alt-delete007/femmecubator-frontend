@@ -41,3 +41,7 @@ export const getCurrentUserState = () => ({ type: "DEFAULT" });
 export const clearRegistrationError = () => ({
   type: "CLEAR_REGISTRATION_ERROR"
 });
+
+export const clearAuthenticationError = () => ({
+  type: "CLEAR_AUTHENTICATION_ERROR"
+});

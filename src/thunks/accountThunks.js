@@ -74,7 +74,10 @@ export const authenticateUser = loginInfo => dispatch => {
     body: JSON.stringify({ login_info: loginInfo })
   })
     .then(res => {
-      if (res.status === 401) throw new Error(res.status);
+      if (res.status === 401)
+        return res.json().then(err => {
+          throw err;
+        });
       else return res.json();
     })
     .then(membership => {
@@ -90,7 +93,9 @@ export const authenticateUser = loginInfo => dispatch => {
 
       dispatch(loginUser(currentUser));
     })
-    .catch(error => dispatch(loginUserFailure("Unauthorized")));
+    .catch(error => {
+      dispatch(loginUserFailure(error));
+    });
 };
 
 export const fetchCurrentUser = () => dispatch => {

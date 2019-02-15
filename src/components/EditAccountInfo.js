@@ -94,7 +94,7 @@ class EditAccountInfo extends Component {
     e.preventDefault();
 
     const userInfo = {
-      id: this.props.currentUser.membershipInfo.id,
+      member_id: this.props.currentUser.membershipInfo.id,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email: this.state.email,

@@ -2,6 +2,7 @@ const initialState = {
   currentUser: {},
   isUserLoggedIn: false,
   authenticationStatus: "",
+  loginData: {},
   registrationStatus: { error: { message: "" } }
 };
 
@@ -12,7 +13,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isUserLoggedIn: true,
         currentUser: action.payload,
-        authenticationStatus: "AUTHENTICATION_SUCCESS"
+        authenticationStatus: "LOGIN_SUCCES"
       };
     }
     case "REGISTER_USER": {
@@ -36,8 +37,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isUserLoggedIn: false,
-        currentUser: {},
-        authenticationStatus: "UNAUTHORIZED"
+        authenticationStatus: "LOGIN_FAILURE",
+        loginData: action.payload
       };
     }
     case "FETCH_CURRENT_USER_INFO": {
@@ -45,7 +46,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isUserLoggedIn: true,
         currentUser: action.payload,
-        authenticationStatus: "AUTHENTICATION_SUCCESS"
+        authenticationStatus: "LOGIN_SUCCESS"
       };
     }
     case "LOGOUT_USER": {
@@ -72,13 +73,14 @@ const reducer = (state = initialState, action) => {
     case "UPDATE_CURRENT_USER_INFO": {
       return {
         ...state,
-        currentUser: action.payload,
-        isUserLoggedIn: true,
-        authenticationStatus: "AUTHENTICATION_SUCCESS"
+        currentUser: action.payload
       };
     }
     case "CLEAR_REGISTRATION_ERROR": {
       return { ...state, registrationStatus: { error: { message: "" } } };
+    }
+    case "CLEAR_AUTHENTICATION_ERROR": {
+      return { ...state, authenticationStatus: "", loginData: {} };
     }
     default:
       return state;
