@@ -7,12 +7,13 @@ class EditAccountInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      member_id: this.props.currentUser.membershipInfo.id,
-      first_name: this.props.currentUser.membershipInfo.first_name,
-      last_name: this.props.currentUser.membershipInfo.last_name,
-      email: this.props.currentUser.membershipInfo.email,
+      member_id: this.props.currentUser.id,
+      first_name: this.props.currentUser.first_name,
+      last_name: this.props.currentUser.last_name,
+      email: this.props.currentUser.email,
       password: "",
-      error: ""
+      error: "",
+      saved: false
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -72,6 +73,13 @@ class EditAccountInfo extends Component {
               />
             </form>
             <div className="error-message">{this.state.error}</div>
+            <div
+              id={
+                this.state.saved ? "edit-acct-frm-show" : "edit-acct-frm-hide"
+              }
+            >
+              Changes Saved
+            </div>
           </div>
         </div>
       </Fragment>
@@ -81,20 +89,24 @@ class EditAccountInfo extends Component {
   changeHandler(e) {
     if (e.target.name === "email") {
       this.setState({
-        [e.target.name]: e.target.value.toLowerCase()
+        [e.target.name]: e.target.value.toLowerCase(),
+        saved: false
       });
     } else {
       this.setState({
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
+        saved: false
       });
     }
   }
 
-  async submitHandler(e) {
+  submitHandler(e) {
     e.preventDefault();
 
+    console.log("submit", this.props.currentUser);
+
     const userInfo = {
-      member_id: this.props.currentUser.membershipInfo.id,
+      member_id: this.props.currentUser.id,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email: this.state.email,
@@ -116,8 +128,8 @@ class EditAccountInfo extends Component {
     ) {
       this.setState({ error: "All fields must be more than one character! " });
     } else {
-      await this.props.updateUser(userInfo);
-      this.props.history.push("/account");
+      this.props.updateUser(userInfo);
+      this.setState({ ...userInfo, password: "", error: "", saved: true });
     }
   }
 }

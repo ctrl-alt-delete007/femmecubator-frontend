@@ -87,7 +87,7 @@ class AddCoupon extends Component {
       sponsor: this.state.sponsor,
       description: this.state.description,
       expiration: this.state.expiration,
-      creator_id: this.props.currentUser.membershipInfo.id
+      creator_id: this.props.currentUser.id
     };
 
     // coupon_code, sponsor, description, expiration

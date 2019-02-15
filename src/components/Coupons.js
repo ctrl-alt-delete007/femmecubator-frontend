@@ -64,7 +64,7 @@ class Coupons extends Component {
       <Coupon
         key={i}
         coupon={coupon}
-        user={this.props.user.currentUser.membershipInfo || {}}
+        user={this.props.user.currentUser || {}}
       />
     ));
 

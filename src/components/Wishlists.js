@@ -11,11 +11,9 @@ class Wishlists extends Component {
   }
 
   render() {
-    const currentUser = this.props.currentUser.membershipInfo || {
-      coupons: []
-    };
+    const currentUser = this.props.currentUser.coupons || [];
 
-    const wishlists = currentUser.coupons.map((wishlistItem, i) => (
+    const wishlists = currentUser.map((wishlistItem, i) => (
       <WishlistItem key={i} wishlistItem={wishlistItem} />
     ));
 

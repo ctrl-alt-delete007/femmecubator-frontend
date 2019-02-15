@@ -35,7 +35,7 @@ export const createUser = userInfo => dispatch => {
         const userInfo = JSON.stringify(currentUser.membershipInfo);
         localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
-        dispatch(registerUser(currentUser));
+        dispatch(registerUser(membership.member));
       })
       .catch(error => {
         const registrationErrorData = { userInfo: userInfo, error: error };
@@ -45,7 +45,7 @@ export const createUser = userInfo => dispatch => {
 };
 
 export const updateUser = userInfo => dispatch => {
-  return fetch(`http://localhost:3000/api/v1/members/${userInfo.id}`, {
+  return fetch(`http://localhost:3000/api/v1/members/${userInfo.member_id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -57,13 +57,11 @@ export const updateUser = userInfo => dispatch => {
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
 
-      const currentUser = {
-        membershipInfo: membership.member
-      };
-      const userInfo = JSON.stringify(currentUser.membershipInfo);
+      const userInfo = JSON.stringify(membership.member);
+
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
-      dispatch(updateCurrentUserInfo(currentUser));
+      dispatch(updateCurrentUserInfo(membership.member));
     });
 };
 
@@ -91,7 +89,7 @@ export const authenticateUser = loginInfo => dispatch => {
       const userInfo = JSON.stringify(currentUser.membershipInfo);
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
-      dispatch(loginUser(currentUser));
+      dispatch(loginUser(membership.member));
     })
     .catch(error => {
       dispatch(loginUserFailure(error));
@@ -118,7 +116,7 @@ export const fetchCurrentUser = () => dispatch => {
       const userInfo = JSON.stringify(currentUser.membershipInfo);
       localStorage.setItem("userInfo", jwt.encode(userInfo, "$ec123t"));
 
-      dispatch(fetchCurrentUserInfo(currentUser));
+      dispatch(fetchCurrentUserInfo(data.membership));
     })
     .catch(error => {
       if (error.message === "401") {

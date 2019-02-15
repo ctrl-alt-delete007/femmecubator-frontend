@@ -303,3 +303,12 @@ a.fbook:active {
   height: 75px;
   width: 248px;
 }
+
+#edit-acct-frm-hide {
+  display: none;
+}
+
+#edit-acct-frm-show {
+  display: inline;
+  color: green;
+}
