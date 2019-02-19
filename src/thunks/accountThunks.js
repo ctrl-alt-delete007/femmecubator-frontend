@@ -11,7 +11,7 @@ import {
 
 export const createUser = userInfo => dispatch => {
   return (
-    fetch("http://localhost:3000/api/v1/members", {
+    fetch("http://femmecubator-backend.herokuapp.com/api/v1/members", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_info: userInfo })
@@ -45,14 +45,19 @@ export const createUser = userInfo => dispatch => {
 };
 
 export const updateUser = userInfo => dispatch => {
-  return fetch(`http://localhost:3000/api/v1/members/${userInfo.member_id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
-    },
-    body: JSON.stringify({ user_info: userInfo })
-  })
+  return fetch(
+    `http://femmecubator-backend.herokuapp.com/api/v1/members/${
+      userInfo.member_id
+    }`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({ user_info: userInfo })
+    }
+  )
     .then(res => res.json())
     .then(membership => {
       localStorage.setItem("token", membership.jwt);
@@ -66,7 +71,7 @@ export const updateUser = userInfo => dispatch => {
 };
 
 export const authenticateUser = loginInfo => dispatch => {
-  return fetch("http://localhost:3000/api/v1/login", {
+  return fetch("http://femmecubator-backend.herokuapp.com/api/v1/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ login_info: loginInfo })
@@ -97,13 +102,16 @@ export const authenticateUser = loginInfo => dispatch => {
 };
 
 export const fetchCurrentUser = () => dispatch => {
-  return fetch("http://localhost:3000/api/v1/current_user", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
+  return fetch(
+    "http://femmecubator-backend.herokuapp.com/api/v1/current_user",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token")
+      }
     }
-  })
+  )
     .then(res => {
       if (res.status === 401) throw new Error(res.status);
       else return res.json();

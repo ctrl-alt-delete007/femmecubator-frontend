@@ -1,7 +1,7 @@
 import { addCoupon, loadCoupons } from "../actions/couponActions";
 
 export const createCoupon = couponInfo => dispatch => {
-  return fetch("http://localhost:3000/api/v1/coupons", {
+  return fetch("http://femmecubator-backend.herokuapp.com/api/v1/coupons", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const createCoupon = couponInfo => dispatch => {
 };
 
 export const getCoupons = () => dispatch => {
-  return fetch("http://localhost:3000/api/v1/coupons", {
+  return fetch("http://femmecubator-backend.herokuapp.com/api/v1/coupons", {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
