@@ -5,7 +5,7 @@ import { fetchCurrentUser } from "../thunks/accountThunks";
 import Coupon from "./coupon";
 import FilterCoupons from "./FilterCoupons";
 import { getCurrentUserState } from "../actions/accountActions";
-// import { Redirect } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 class Coupons extends Component {
   constructor(props) {
@@ -42,6 +42,7 @@ class Coupons extends Component {
       if (this.props.location.state === undefined) {
         this.props.history.push("/login");
       } else {
+        // debugger;
         this.props.history.push({
           pathname: "/login",
           state: {
