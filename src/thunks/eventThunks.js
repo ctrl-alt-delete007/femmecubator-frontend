@@ -2,7 +2,9 @@ import { loadMeetups } from "../actions/eventActions";
 
 export const getMeetups = () => dispatch => {
   return fetch(
-    `https://cors-anywhere.herokuapp.com/http://api.meetup.com/find/upcoming_events?key=process.env.key&sign=true&format=json&photo-host=public&topic_category=witi`,
+    `https://cors-anywhere.herokuapp.com/http://api.meetup.com/find/upcoming_events?key=${
+      process.env.key
+    }&sign=true&format=json&photo-host=public&topic_category=witi`,
     { mode: "cors" }
   )
     .then(resp => resp.json())
