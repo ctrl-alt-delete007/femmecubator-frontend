@@ -8,7 +8,9 @@ import Coupons from "./Coupons";
 import AddCoupon from "./AddCoupon";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NavBar from "./Nav";
-require("dotenv").config();
+// require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 class App extends Component {
   render() {

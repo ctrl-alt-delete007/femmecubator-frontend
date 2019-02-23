@@ -1,7 +1,7 @@
 import { loadMeetups } from "../actions/eventActions";
 
 export const getMeetups = () => dispatch => {
-  return fetch(`${process.env.API_URL}`, { mode: "cors" })
+  return fetch(process.env.API_URL, { mode: "cors" })
     .then(resp => resp.json())
     .then(data => {
       const meetups = data.events.map(meetup => {
