@@ -1,6 +1,8 @@
 import { loadMeetups } from "../actions/eventActions";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+require("dotenv").config();
+// dotenv.config();
+
 console.log(process.env.API_URL);
 export const getMeetups = () => dispatch => {
   return fetch(`${process.env.API_URL}`, { mode: "cors" })
