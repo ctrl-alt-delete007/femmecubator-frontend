@@ -1,11 +1,14 @@
 import { loadMeetups } from "../actions/eventActions";
 // import dotenv from "dotenv";
-require("dotenv").config();
+// require("dotenv").config();
 // dotenv.config();
 
-console.log(process.env.API_URL);
+// console.log(process.env.API_URL);
 export const getMeetups = () => dispatch => {
-  return fetch(`${process.env.API_URL}`, { mode: "cors" })
+  return fetch(
+    `https://cors-anywhere.herokuapp.com/http://api.meetup.com/find/upcoming_events?key=13a6c19667bd255232452d766c2f6c&sign=true&format=json&photo-host=public&topic_category=witi`,
+    { mode: "cors" }
+  )
     .then(resp => resp.json())
     .then(data => {
       const meetups = data.events.map(meetup => {
