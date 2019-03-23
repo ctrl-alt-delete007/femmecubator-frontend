@@ -2,7 +2,7 @@ import { addToWishList } from "../actions/wishlistActions";
 
 export const createWishList = wishlist => dispatch => {
   return fetch(
-    `http://femmecubator-backend.herokuapp.com/api/v1/members/${
+    `https://combined-backend.herokuapp.com/femmecubator/api/v1/members/${
       wishlist.member_id
     }/wishlists`,
     {

@@ -11,11 +11,14 @@ import {
 
 export const createUser = userInfo => dispatch => {
   return (
-    fetch("http://femmecubator-backend.herokuapp.com/api/v1/members", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_info: userInfo })
-    })
+    fetch(
+      "https://combined-backend.herokuapp.com/femmecubator/api/v1/members",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_info: userInfo })
+      }
+    )
       // .then(res => res.json())
       .then(res => {
         if (res.statusText === "Created") {
@@ -46,7 +49,7 @@ export const createUser = userInfo => dispatch => {
 
 export const updateUser = userInfo => dispatch => {
   return fetch(
-    `http://femmecubator-backend.herokuapp.com/api/v1/members/${
+    `https://combined-backend.herokuapp.com/femmecubator/api/v1/members/${
       userInfo.member_id
     }`,
     {
@@ -71,11 +74,14 @@ export const updateUser = userInfo => dispatch => {
 };
 
 export const authenticateUser = loginInfo => dispatch => {
-  return fetch("http://femmecubator-backend.herokuapp.com/api/v1/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ login_info: loginInfo })
-  })
+  return fetch(
+    "https://combined-backend.herokuapp.com/femmecubator/api/v1/login",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ login_info: loginInfo })
+    }
+  )
     .then(res => {
       if (res.status === 401)
         return res.json().then(err => {
@@ -103,7 +109,7 @@ export const authenticateUser = loginInfo => dispatch => {
 
 export const fetchCurrentUser = () => dispatch => {
   return fetch(
-    "http://femmecubator-backend.herokuapp.com/api/v1/current_user",
+    "https://combined-backend.herokuapp.com/femmecubator/api/v1/current_user",
     {
       method: "GET",
       headers: {
